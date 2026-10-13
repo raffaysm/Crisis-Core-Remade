@@ -879,6 +879,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2366231972687410269, guid: 5dc1590e87dbe0347a68c6a4432c631b, type: 3}
+      propertyPath: cure
+      value: 
+      objectReference: {fileID: 1140179252}
+    - target: {fileID: 2366231972687410269, guid: 5dc1590e87dbe0347a68c6a4432c631b, type: 3}
       propertyPath: Enemy
       value: 
       objectReference: {fileID: 0}
@@ -891,9 +895,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1120593753}
     - target: {fileID: 2366231972687410269, guid: 5dc1590e87dbe0347a68c6a4432c631b, type: 3}
+      propertyPath: braver
+      value: 
+      objectReference: {fileID: 295341028}
+    - target: {fileID: 2366231972687410269, guid: 5dc1590e87dbe0347a68c6a4432c631b, type: 3}
+      propertyPath: focused
+      value: 
+      objectReference: {fileID: 1975287173}
+    - target: {fileID: 2366231972687410269, guid: 5dc1590e87dbe0347a68c6a4432c631b, type: 3}
       propertyPath: distance
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2366231972687410269, guid: 5dc1590e87dbe0347a68c6a4432c631b, type: 3}
+      propertyPath: punisher
+      value: 
+      objectReference: {fileID: 1747936738}
+    - target: {fileID: 2366231972687410269, guid: 5dc1590e87dbe0347a68c6a4432c631b, type: 3}
+      propertyPath: ascension
+      value: 
+      objectReference: {fileID: 638959710}
     - target: {fileID: 2366231972687410269, guid: 5dc1590e87dbe0347a68c6a4432c631b, type: 3}
       propertyPath: limitButton
       value: 
@@ -1256,9 +1276,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1303549137}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CloudAttack
+      - m_Target: {fileID: 1390917008}
+        m_TargetAssemblyTypeName: CloudBattleMovement, Assembly-CSharp
+        m_MethodName: Braver
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1841,9 +1861,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1303549137}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CloudAttack
+      - m_Target: {fileID: 1390917008}
+        m_TargetAssemblyTypeName: CloudBattleMovement, Assembly-CSharp
+        m_MethodName: Ascension
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2418,7 +2438,7 @@ GameObject:
   - component: {fileID: 829395814}
   - component: {fileID: 829395813}
   m_Layer: 5
-  m_Name: Magic Spells
+  m_Name: Magic Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3676,9 +3696,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1303549137}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CloudAttack
+      - m_Target: {fileID: 1390917008}
+        m_TargetAssemblyTypeName: CloudBattleMovement, Assembly-CSharp
+        m_MethodName: Cure
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4368,10 +4388,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdeb00b6d3b3d974d83e716f08d3a083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  score: 0
-  hits: 0
   pauseMenu: {fileID: 242091821}
   gameOverMenu: {fileID: 1125045927}
+  attackMenu: {fileID: 1313263597}
+  magicMenu: {fileID: 829395811}
+  limitMenu: {fileID: 1332126517}
   attackButton: {fileID: 192498032}
   magicButton: {fileID: 586145744}
   limitButton: {fileID: 1286892600}
@@ -4388,6 +4409,7 @@ MonoBehaviour:
   cloudLimit: 0
   cloudDamageTaken: 0
   sephiHP: 1000
+  sephiMaxHP: 1000
   sephiMP: 100
 --- !u!4 &1303549138
 Transform:
@@ -4513,7 +4535,7 @@ GameObject:
   - component: {fileID: 1313263600}
   - component: {fileID: 1313263599}
   m_Layer: 5
-  m_Name: Attack Skills
+  m_Name: Attack Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4589,7 +4611,7 @@ GameObject:
   - component: {fileID: 1332126520}
   - component: {fileID: 1332126519}
   m_Layer: 5
-  m_Name: Limit
+  m_Name: Limit Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5419,9 +5441,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1303549137}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CloudLimit
+      - m_Target: {fileID: 1390917008}
+        m_TargetAssemblyTypeName: CloudBattleMovement, Assembly-CSharp
+        m_MethodName: Punisher
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6216,9 +6238,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1303549137}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CloudMagic
+      - m_Target: {fileID: 1390917008}
+        m_TargetAssemblyTypeName: CloudBattleMovement, Assembly-CSharp
+        m_MethodName: Focused
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6461,6 +6483,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sephiroth
       objectReference: {fileID: 0}
+    - target: {fileID: 5534472562260801759, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6066426523181239966, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
       propertyPath: enemy
       value: 
@@ -6472,6 +6498,14 @@ PrefabInstance:
     - target: {fileID: 6066426523181239966, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
       propertyPath: distance
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6066426523181239966, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
+      propertyPath: p2Position
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6066426523181239966, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
+      propertyPath: newPosition
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6832291270634711505, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
       propertyPath: m_LocalPosition.x

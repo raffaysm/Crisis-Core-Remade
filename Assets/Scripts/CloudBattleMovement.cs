@@ -8,9 +8,11 @@ public class CloudBattleMovement : MonoBehaviour
     Animator animator;
     Rigidbody rb;
     GameManager gm;
-    public Button attackButton;
-    public Button magicButton;
-    public Button limitButton;
+    public Button braver;
+    public Button focused;
+    public Button punisher;
+    public Button cure;
+    public Button ascension;
     public Transform enemy;
     public Transform cloud;
     public float distance = 2f;
@@ -40,44 +42,92 @@ public class CloudBattleMovement : MonoBehaviour
         }
     }
 
-    public void CloudAttack()
+    public void Braver()
     {
-        attackButton.interactable = false;
-        Vector3 direction = (enemy.position - cloud.position).normalized;
-        cloud.position = enemy.position - direction * distance;
-        animator.SetTrigger("Attack");
-        Invoke("MoveBack", 2.5f);
+        StartCoroutine(BraverHit());
     }
 
-    public void CloudMagic()
+    IEnumerator BraverHit()
+    {
+        gm.attackMenu.SetActive(false);
+        gm.attackButton.interactable = false;
+        animator.SetTrigger("Braver");
+        yield return new WaitForSeconds(0.9f);
+        Vector3 direction = (enemy.position - cloud.position).normalized;
+        cloud.position = enemy.position - direction * distance;
+        gm.sephiHP = gm.sephiHP - damage;
+        yield return new WaitForSeconds(1.3f);
+        MoveBack();
+    }
+
+    public void Focused()
+    {
+        StartCoroutine(FocusedHit());
+    }
+
+    IEnumerator FocusedHit()
+    {
+        gm.attackMenu.SetActive(false);
+        gm.attackButton.interactable = false;
+        animator.SetTrigger("Focused");
+        yield return new WaitForSeconds(0.9f);
+        Vector3 direction = (enemy.position - cloud.position).normalized;
+        cloud.position = enemy.position - direction * distance;
+        gm.sephiHP = gm.sephiHP - damage;
+        yield return new WaitForSeconds(1.3f);
+        MoveBack();
+    }
+    public void Punisher()
+    {
+        StartCoroutine(PunisherHit());
+    }
+
+    IEnumerator PunisherHit()
+    {
+        gm.attackMenu.SetActive(false);
+        gm.attackButton.interactable = false;
+        animator.SetTrigger("Punisher");
+        yield return new WaitForSeconds(0.4583f);
+        Vector3 direction = (enemy.position - cloud.position).normalized;
+        cloud.position = enemy.position - direction * distance;
+        gm.sephiHP = gm.sephiHP - damage;
+        yield return new WaitForSeconds(1.7f);
+        MoveBack();
+    }
+    public void Cure()
     {
         if(gm.cloudMP >= mpCost)
         {
-            magicButton.interactable = false;
-            animator.SetTrigger("Magic");
+            gm.magicMenu.SetActive(false);
+            gm.magicButton.interactable = false;
+            animator.SetTrigger("Cure");
             gm.cloudHP = gm.cloudHP + heal;
             gm.cloudMP = gm.cloudMP - mpCost;
             StartCoroutine(Turn());
         }
     }
 
-    public void CloudLimit()
+    public void Ascension()
     {
         if(gm.cloudDamageTaken >= 1000)
         {
-            limitButton.interactable = false;
-            animator.SetTrigger("Limit");
-            StartCoroutine(Hit());
+            gm.limitMenu.SetActive(false);
+            gm.limitButton.interactable = false;
+            StartCoroutine(AscensionHit());
         }
     }
 
-    IEnumerator Hit()
+    IEnumerator AscensionHit()
     {
+        gm.attackMenu.SetActive(false);
+        gm.attackButton.interactable = false;
+        animator.SetTrigger("Ascension");
+        yield return new WaitForSeconds(2.5f);
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
-        yield return new WaitForSeconds(5.9f);
         gm.sephiHP = gm.sephiHP - limitDamage;
-        MoveBack(); // total animation time 8.542
+        yield return new WaitForSeconds(3.833f);
+        MoveBack();
     }
     void MoveBack()
     {

@@ -5,13 +5,12 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public int score = 0;
-    public int hits = 0;
-    //public TextMeshProUGUI scoreText;
-    //public TextMeshProUGUI hitsText;
     public static GameManager gm;
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
+    public GameObject attackMenu;
+    public GameObject magicMenu;
+    public GameObject limitMenu;
     public Button attackButton;
     public Button magicButton;
     public Button limitButton;
@@ -30,6 +29,7 @@ public class GameManager : MonoBehaviour
     public int cloudLimit = 0;
     public int cloudDamageTaken = 0;
     public int sephiHP = 1000;
+    public int sephiMaxHP = 1000;
     public int sephiMP = 100;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -123,18 +123,23 @@ public class GameManager : MonoBehaviour
 
     public void CloudAttack()
     {
-        cloudBattle.CloudAttack();
+        attackMenu.SetActive(true);
+        magicMenu.SetActive(false);
+        limitMenu.SetActive(false);
     }
 
     public void CloudMagic()
     {
-        cloudBattle.CloudMagic();
+        magicMenu.SetActive(true);
+        attackMenu.SetActive(false);
+        limitMenu.SetActive(false);
     }
 
     public void CloudLimit()
     {
-        cloudBattle.CloudLimit();
-        Debug.Log("call");
+        limitMenu.SetActive(true);
+        attackMenu.SetActive(false);
+        magicMenu.SetActive(false);
     }
     public void Combat()
     {

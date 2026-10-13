@@ -11,7 +11,10 @@ public class SephirothBattleMovement : MonoBehaviour
     public Transform enemy;
     public Transform sephi;
     public float distance = 2f;
+    public float tilt = 10f;
     private int damage = 150;
+    private bool phase1 = true;
+    private bool phase2 = false;
 
     void Start()
     {
@@ -34,17 +37,103 @@ public class SephirothBattleMovement : MonoBehaviour
             rb.MovePosition(newPosition);
         }
     }
+
     public void SephiAttack()
     {
-        animator.SetTrigger("Attack");
-        Invoke("Hit", 1f);
+        if (phase1 && gm.sephiHP <= gm.sephiMaxHP / 2)
+        {
+            StartCoroutine(PhaseChange());
+            return;
+        }
+
+        if (phase1)
+        {
+            int randomAction = Random.Range(1, 4);
+
+            if (randomAction == 1)
+            {
+                SephiAttack1();
+            }
+            if (randomAction == 2)
+            {
+                SephiAttack2();
+            }
+            if (randomAction == 3)
+            {
+                SephiAttack3();
+            }
+            
+        }
+
+        if(phase2)
+        {
+            AngelAttack1();
+        }
     }
 
-    void Hit()
+    IEnumerator PhaseChange()
     {
+        rb.useGravity = false;
+        rb.isKinematic = true;
+        animator.SetTrigger("Phase");
+        yield return new WaitForSeconds(5.833f);
+        Vector3 endPosition = sephi.position;
+        phase1 = false;
+        phase2 = true;
+        sephi.localRotation = Quaternion.Euler(0f, 0f, tilt);
+        SephiAttack();
+    }
+    public void SephiAttack1()
+    {
+        StartCoroutine(SephiAttack1Hit());
+    }
+
+    IEnumerator SephiAttack1Hit()
+    {
+        animator.SetTrigger("Attack 1");
+        yield return new WaitForSeconds(1.5f);
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
-        Invoke("MoveBack", 2.5f);
+        yield return new WaitForSeconds(2f);
+        MoveBack();
+    }
+
+    public void SephiAttack2()
+    {
+        StartCoroutine(SephiAttack2Hit());
+    }
+
+    IEnumerator SephiAttack2Hit()
+    {
+        animator.SetTrigger("Attack 2");
+        yield return new WaitForSeconds(0.916f);
+        Vector3 direction = (enemy.position - sephi.position).normalized;
+        sephi.position = enemy.position - direction * distance;
+        yield return new WaitForSeconds(3.083f);
+        MoveBack();
+    }
+
+    public void SephiAttack3()
+    {
+        StartCoroutine(SephiAttack3Hit());
+    }
+
+    IEnumerator SephiAttack3Hit()
+    {
+        animator.SetTrigger("Attack 3");
+        yield return new WaitForSeconds(5.833f);
+        MoveBack();
+    }
+    public void AngelAttack1()
+    {
+        StartCoroutine(AngelAttack1Hit());
+    }
+
+    IEnumerator AngelAttack1Hit()
+    {
+        animator.SetTrigger("Angel 1");
+        yield return new WaitForSeconds(5.833f);
+        MoveBack();
     }
     void MoveBack()
     {
@@ -56,7 +145,7 @@ public class SephirothBattleMovement : MonoBehaviour
 
     IEnumerator Turn()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         gm.cloud = true;
         gm.sephi = false;
         gm.Combat();

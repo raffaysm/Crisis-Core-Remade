@@ -2,24 +2,20 @@ using UnityEngine;
 
 public class SephirothAnimatorMovement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private SephirothBattleMovement parent;
+    Animator animator;
+    Rigidbody rb;
+
     void Start()
     {
-        parent = GetComponent<SephirothBattleMovement>();
+        animator = GetComponent<Animator>();
+        rb = GetComponentInParent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnAnimatorMove()
     {
-        
-    }
-
-    private void OnAnimatorMove()
-    {
-        if(parent != null)
+        if (rb && animator)
         {
-            parent.RootMovement();
-        }    
+            rb.MovePosition(rb.position + animator.deltaPosition);
+        }
     }
 }
