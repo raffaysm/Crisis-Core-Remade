@@ -7,7 +7,7 @@ public class CloudBattleMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     Animator animator;
     Rigidbody rb;
-    GameManager gm;
+    CombatManager cm;
     public Button braver;
     public Button focused;
     public Button punisher;
@@ -25,7 +25,7 @@ public class CloudBattleMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
-        gm = GameManager.gm;
+        cm = CombatManager.cm;
     }
 
     // Update is called once per frame
@@ -50,15 +50,15 @@ public class CloudBattleMovement : MonoBehaviour
 
     IEnumerator BraverHit()
     {
-        gm.attackMenu.SetActive(false);
-        gm.attackButton.interactable = false;
+        cm.attackMenu.SetActive(false);
+        cm.attackButton.interactable = false;
         animator.SetTrigger("Braver");
         sounds.Play(sounds.braver);
 
         yield return new WaitForSeconds(0.9f);
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
-        gm.sephiHP = gm.sephiHP - damage;
+        cm.sephiHP = cm.sephiHP - damage;
         yield return new WaitForSeconds(1.3f);
         MoveBack();
     }
@@ -70,15 +70,15 @@ public class CloudBattleMovement : MonoBehaviour
 
     IEnumerator FocusedHit()
     {
-        gm.attackMenu.SetActive(false);
-        gm.attackButton.interactable = false;
+        cm.attackMenu.SetActive(false);
+        cm.attackButton.interactable = false;
         animator.SetTrigger("Focused");
         sounds.Play(sounds.focused);
 
         yield return new WaitForSeconds(0.9f);
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
-        gm.sephiHP = gm.sephiHP - damage;
+        cm.sephiHP = cm.sephiHP - damage;
         yield return new WaitForSeconds(1.3f);
         MoveBack();
     }
@@ -89,50 +89,50 @@ public class CloudBattleMovement : MonoBehaviour
 
     IEnumerator PunisherHit()
     {
-        gm.attackMenu.SetActive(false);
-        gm.attackButton.interactable = false;
+        cm.attackMenu.SetActive(false);
+        cm.attackButton.interactable = false;
         animator.SetTrigger("Punisher");
         yield return new WaitForSeconds(0.4583f);
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
-        gm.sephiHP = gm.sephiHP - damage;
+        cm.sephiHP = cm.sephiHP - damage;
         yield return new WaitForSeconds(1.7f);
         MoveBack();
     }
     public void Cure()
     {
-        if(gm.cloudMP >= mpCost)
+        if(cm.cloudMP >= mpCost)
         {
-            gm.magicMenu.SetActive(false);
-            gm.magicButton.interactable = false;
+            cm.magicMenu.SetActive(false);
+            cm.magicButton.interactable = false;
             animator.SetTrigger("Cure");
-            gm.cloudHP = gm.cloudHP + heal;
-            gm.cloudMP = gm.cloudMP - mpCost;
+            cm.cloudHP = cm.cloudHP + heal;
+            cm.cloudMP = cm.cloudMP - mpCost;
             StartCoroutine(Turn());
         }
     }
 
     public void Ascension()
     {
-        if(gm.cloudDamageTaken >= 1000)
+        if(cm.cloudDamageTaken >= 1000)
         {
-            gm.limitMenu.SetActive(false);
-            gm.limitButton.interactable = false;
+            cm.limitMenu.SetActive(false);
+            cm.limitButton.interactable = false;
             StartCoroutine(AscensionHit());
         }
     }
 
     IEnumerator AscensionHit()
     {
-        gm.attackMenu.SetActive(false);
-        gm.attackButton.interactable = false;
+        cm.attackMenu.SetActive(false);
+        cm.attackButton.interactable = false;
         animator.SetTrigger("Ascension");
         sounds.Play(sounds.ascension);
 
         yield return new WaitForSeconds(2.5f);
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
-        gm.sephiHP = gm.sephiHP - limitDamage;
+        cm.sephiHP = cm.sephiHP - limitDamage;
         yield return new WaitForSeconds(3.833f);
         MoveBack();
     }
@@ -145,8 +145,8 @@ public class CloudBattleMovement : MonoBehaviour
     IEnumerator Turn()
     {
         yield return new WaitForSeconds(1.5f);
-        gm.cloud = false;
-        gm.sephi = true;
-        gm.Combat();
+        cm.cloud = false;
+        cm.sephi = true;
+        cm.Combat();
     }
 }

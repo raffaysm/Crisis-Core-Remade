@@ -12,7 +12,7 @@ public class Obstacle : MonoBehaviour
             if (Time.time - lastHitTime >= damageInterval)
             {
                 lastHitTime = Time.time;
-                //GameManager.gm.AddHits();
+                //GameManager.cm.AddHits();
                 Debug.Log("Player hit!");
             }
         }

@@ -820,8 +820,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1303549137}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 218712440}
+        m_TargetAssemblyTypeName: CombatManager, Assembly-CSharp
         m_MethodName: CloudAttack
         m_Mode: 1
         m_Arguments:
@@ -955,6 +955,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dc1590e87dbe0347a68c6a4432c631b, type: 3}
+--- !u!114 &218712440 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+  m_PrefabInstance: {fileID: 1474152917}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fb1d6c9b6483745bbb9a0a144fe19a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &242091821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,7 +1126,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1303549137}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: isResumed
         m_Mode: 1
@@ -1635,8 +1646,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1303549137}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 218712440}
+        m_TargetAssemblyTypeName: CombatManager, Assembly-CSharp
         m_MethodName: CloudMagic
         m_Mode: 1
         m_Arguments:
@@ -4150,8 +4161,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1303549137}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 218712440}
+        m_TargetAssemblyTypeName: CombatManager, Assembly-CSharp
         m_MethodName: CloudLimit
         m_Mode: 1
         m_Arguments:
@@ -4337,171 +4348,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300331890}
   m_CullTransparentMesh: 1
---- !u!1 &1303549136
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1303549138}
-  - component: {fileID: 1303549137}
-  - component: {fileID: 1303549139}
-  m_Layer: 0
-  m_Name: Game Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1303549137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303549136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdeb00b6d3b3d974d83e716f08d3a083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  pauseMenu: {fileID: 242091821}
-  gameOverMenu: {fileID: 1125045927}
-  attackMenu: {fileID: 1313263597}
-  magicMenu: {fileID: 829395811}
-  limitMenu: {fileID: 1332126517}
-  attackButton: {fileID: 192498032}
-  magicButton: {fileID: 586145744}
-  limitButton: {fileID: 1286892600}
-  HP: {fileID: 1123624235}
-  MP: {fileID: 1544737603}
-  Limit: {fileID: 769203414}
-  cloudBattle: {fileID: 1390917008}
-  sephiBattle: {fileID: 1120593749}
-  cloud: 1
-  sephi: 0
-  cloudHP: 777
-  cloudMP: 77
-  limitRequirement: 1000
-  cloudLimit: 0
-  cloudDamageTaken: 0
-  sephiHP: 1000
-  sephiMaxHP: 1000
-  sephiMP: 100
---- !u!4 &1303549138
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303549136}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1096.535, y: -0.00002, z: 3936.481}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1303549139
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303549136}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 5f136ac9d8453f44daf91c83081cfbc4, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.15
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1313263597
 GameObject:
   m_ObjectHideFlags: 0
@@ -4737,7 +4583,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1303549137}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: close
         m_Mode: 1
@@ -4814,6 +4660,115 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2bd4a00300e3244b890095486172ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!1001 &1474152917
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 216914093759289254, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: m_Name
+      value: Combat Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: HP
+      value: 
+      objectReference: {fileID: 1123624235}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: MP
+      value: 
+      objectReference: {fileID: 1544737603}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: Limit
+      value: 
+      objectReference: {fileID: 769203414}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: limitMenu
+      value: 
+      objectReference: {fileID: 1332126517}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: magicMenu
+      value: 
+      objectReference: {fileID: 829395811}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 242091821}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: attackMenu
+      value: 
+      objectReference: {fileID: 1313263597}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: cloudBattle
+      value: 
+      objectReference: {fileID: 1390917008}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: limitButton
+      value: 
+      objectReference: {fileID: 1286892600}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: magicButton
+      value: 
+      objectReference: {fileID: 586145744}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: sephiBattle
+      value: 
+      objectReference: {fileID: 1120593749}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: attackButton
+      value: 
+      objectReference: {fileID: 192498032}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: gameOverMenu
+      value: 
+      objectReference: {fileID: 1125045927}
+    - target: {fileID: 2767673501726455542, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1096.535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767673501726455542, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00002
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767673501726455542, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3936.481
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767673501726455542, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767673501726455542, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767673501726455542, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767673501726455542, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767673501726455542, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767673501726455542, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767673501726455542, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
 --- !u!1 &1484845339
 GameObject:
   m_ObjectHideFlags: 0
@@ -6571,7 +6526,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 899883990}
-  - {fileID: 1303549138}
+  - {fileID: 1474152917}
   - {fileID: 670628961}
   - {fileID: 49710180}
   - {fileID: 2059924998}

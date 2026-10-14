@@ -7,7 +7,7 @@ public class SephirothBattleMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     Rigidbody rb;
     Animator animator;
-    GameManager gm;
+    CombatManager cm;
     public Transform enemy;
     public Transform sephi;
     public float distance = 2f;
@@ -20,7 +20,7 @@ public class SephirothBattleMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
-        gm = GameManager.gm;
+        cm = CombatManager.cm;
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class SephirothBattleMovement : MonoBehaviour
 
     public void SephiAttack()
     {
-        if (phase1 && gm.sephiHP <= gm.sephiMaxHP / 2)
+        if (phase1 && cm.sephiHP <= cm.sephiMaxHP / 2)
         {
             StartCoroutine(PhaseChange());
             return;
@@ -137,8 +137,8 @@ public class SephirothBattleMovement : MonoBehaviour
     }
     void MoveBack()
     {
-        gm.cloudHP = gm.cloudHP - damage;
-        gm.cloudDamageTaken = gm.cloudDamageTaken + damage;
+        cm.cloudHP = cm.cloudHP - damage;
+        cm.cloudDamageTaken = cm.cloudDamageTaken + damage;
         sephi.localPosition = Vector3.zero;
         StartCoroutine(Turn());
     }
@@ -146,8 +146,8 @@ public class SephirothBattleMovement : MonoBehaviour
     IEnumerator Turn()
     {
         yield return new WaitForSeconds(1f);
-        gm.cloud = true;
-        gm.sephi = false;
-        gm.Combat();
+        cm.cloud = true;
+        cm.sephi = false;
+        cm.Combat();
     }
 }
