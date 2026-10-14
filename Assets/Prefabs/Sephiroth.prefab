@@ -61,7 +61,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!136 &905582423871473042
 CapsuleCollider:
@@ -119,6 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81924008e9ae8ba49b1338b05ad56582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  enemy: {fileID: 0}
+  sephi: {fileID: 4561817117006576312}
+  distance: 2.5
+  tilt: 10
 --- !u!1001 &4090514220872129875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -234,7 +238,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.02498822, y: 0.00071151985, z: 0.0023974362}
   m_Center: {x: -0.009184345, y: -0.000000062468665, z: 0.0007038603}

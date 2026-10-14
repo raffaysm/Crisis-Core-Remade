@@ -15,6 +15,7 @@ public class CloudBattleMovement : MonoBehaviour
     public Button ascension;
     public Transform enemy;
     public Transform cloud;
+    public CloudAudio sounds;
     public float distance = 2f;
     private int damage = 100;
     private int heal = 300;
@@ -52,6 +53,8 @@ public class CloudBattleMovement : MonoBehaviour
         gm.attackMenu.SetActive(false);
         gm.attackButton.interactable = false;
         animator.SetTrigger("Braver");
+        sounds.Play(sounds.braver);
+
         yield return new WaitForSeconds(0.9f);
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
@@ -70,6 +73,8 @@ public class CloudBattleMovement : MonoBehaviour
         gm.attackMenu.SetActive(false);
         gm.attackButton.interactable = false;
         animator.SetTrigger("Focused");
+        sounds.Play(sounds.focused);
+
         yield return new WaitForSeconds(0.9f);
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
@@ -122,6 +127,8 @@ public class CloudBattleMovement : MonoBehaviour
         gm.attackMenu.SetActive(false);
         gm.attackButton.interactable = false;
         animator.SetTrigger("Ascension");
+        sounds.Play(sounds.ascension);
+
         yield return new WaitForSeconds(2.5f);
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
