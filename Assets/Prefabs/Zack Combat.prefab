@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7466239518243317686}
   m_Layer: 0
   m_Name: Zack Combat
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,8 +127,8 @@ MonoBehaviour:
   cure: {fileID: 0}
   ascension: {fileID: 0}
   enemy: {fileID: 0}
-  cloud: {fileID: 0}
-  sounds: {fileID: 0}
+  cloud: {fileID: 3677340791002822494}
+  sounds: {fileID: 3677701260121887638}
   distance: 2.5
 --- !u!114 &3677701260121887638
 MonoBehaviour:
@@ -465,13 +465,33 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -3958311368652957959, guid: 08322ad2bac22f0458ab17d15e7679e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4641432708594543504}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08322ad2bac22f0458ab17d15e7679e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3166226077536505286}
   m_SourcePrefab: {fileID: 100100000, guid: 08322ad2bac22f0458ab17d15e7679e2, type: 3}
 --- !u!4 &1376980431695509813 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3958311368652957959, guid: 08322ad2bac22f0458ab17d15e7679e2, type: 3}
   m_PrefabInstance: {fileID: 6488918094056206284}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6254423948295803549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 08322ad2bac22f0458ab17d15e7679e2, type: 3}
+  m_PrefabInstance: {fileID: 6488918094056206284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3166226077536505286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6254423948295803549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f68d7fb88499f408db6f347e6b9e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CloudAnimationMove
 --- !u!4 &6739634493187835943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08322ad2bac22f0458ab17d15e7679e2, type: 3}

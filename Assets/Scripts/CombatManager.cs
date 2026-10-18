@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class CombatManager : MonoBehaviour
 {
     public static CombatManager cm;
+    public AudioSource sounds;
+    public AudioClip start;
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
     public GameObject attackMenu;
@@ -40,6 +42,15 @@ public class CombatManager : MonoBehaviour
     void Start()
     {
         cloudBattle = FindAnyObjectByType<CloudBattleMovement>();
+        Invoke("ActivatingCombatMode", 0.5f);
+    }
+
+    void ActivatingCombatMode()
+    {
+        if(sounds != null)
+        {
+            sounds.PlayOneShot(start);
+        }
     }
 
     // Update is called once per frame
