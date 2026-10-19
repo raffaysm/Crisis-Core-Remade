@@ -2740,6 +2740,10 @@ PrefabInstance:
       propertyPath: gameOverMenu
       value: 
       objectReference: {fileID: 1125045927}
+    - target: {fileID: 6978669029837001865, guid: 198187c536c23854cb6df520e0c52f41, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d0b65f22d4090b479d923cc443c00f0, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

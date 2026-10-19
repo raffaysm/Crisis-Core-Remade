@@ -8,6 +8,7 @@ public class SephirothBattleMovement : MonoBehaviour
     Rigidbody rb;
     Animator animator;
     CombatManager cm;
+    public SephirothAudio sounds;
     public Transform enemy;
     public Transform sephi;
     public float distance = 2f;
@@ -91,6 +92,7 @@ public class SephirothBattleMovement : MonoBehaviour
     IEnumerator SephiAttack1Hit()
     {
         animator.SetTrigger("Attack 1");
+        sounds.Play(sounds.attacks);
         yield return new WaitForSeconds(1.5f);
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
@@ -106,6 +108,7 @@ public class SephirothBattleMovement : MonoBehaviour
     IEnumerator SephiAttack2Hit()
     {
         animator.SetTrigger("Attack 2");
+        sounds.Play(sounds.attacks);
         yield return new WaitForSeconds(0.916f);
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
@@ -121,6 +124,7 @@ public class SephirothBattleMovement : MonoBehaviour
     IEnumerator SephiAttack3Hit()
     {
         animator.SetTrigger("Attack 3");
+        sounds.Play(sounds.attacks);
         yield return new WaitForSeconds(5.833f);
         MoveBack();
     }
@@ -132,6 +136,7 @@ public class SephirothBattleMovement : MonoBehaviour
     IEnumerator AngelAttack1Hit()
     {
         animator.SetTrigger("Angel 1");
+        sounds.Play(sounds.attacks);
         yield return new WaitForSeconds(5.833f);
         MoveBack();
     }

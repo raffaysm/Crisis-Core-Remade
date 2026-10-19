@@ -54,6 +54,7 @@ public class CloudBattleMovement : MonoBehaviour
         cm.attackButton.interactable = false;
         animator.SetTrigger("Braver");
         sounds.Play(sounds.braver);
+        sounds.Braver();
 
         yield return new WaitForSeconds(0.9f);
         Vector3 direction = (enemy.position - cloud.position).normalized;
@@ -74,6 +75,7 @@ public class CloudBattleMovement : MonoBehaviour
         cm.attackButton.interactable = false;
         animator.SetTrigger("Focused");
         sounds.Play(sounds.focused);
+        sounds.Focused();
 
         yield return new WaitForSeconds(0.9f);
         Vector3 direction = (enemy.position - cloud.position).normalized;
@@ -92,6 +94,9 @@ public class CloudBattleMovement : MonoBehaviour
         cm.attackMenu.SetActive(false);
         cm.attackButton.interactable = false;
         animator.SetTrigger("Punisher");
+        sounds.Play(sounds.punisher);
+        sounds.Punisher();
+
         yield return new WaitForSeconds(0.4583f);
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
@@ -106,6 +111,7 @@ public class CloudBattleMovement : MonoBehaviour
             cm.magicMenu.SetActive(false);
             cm.magicButton.interactable = false;
             animator.SetTrigger("Cure");
+            sounds.Cure();
             cm.cloudHP = cm.cloudHP + heal;
             cm.cloudMP = cm.cloudMP - mpCost;
             StartCoroutine(Turn());
@@ -128,6 +134,7 @@ public class CloudBattleMovement : MonoBehaviour
         cm.attackButton.interactable = false;
         animator.SetTrigger("Ascension");
         sounds.Play(sounds.ascension);
+        sounds.Limit_Break();
 
         yield return new WaitForSeconds(2.5f);
         Vector3 direction = (enemy.position - cloud.position).normalized;

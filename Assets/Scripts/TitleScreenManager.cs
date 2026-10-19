@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 public class TitleScreenManager : MonoBehaviour
 {
     public string scene;
+    public string bossScene;
+    public GameObject any;
+    public GameObject menu;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,7 +17,26 @@ public class TitleScreenManager : MonoBehaviour
     {
         if(Input.anyKeyDown)
         {
-            SceneManager.LoadScene(scene);
+            any.SetActive(false);
+            menu.SetActive(true);
         }
+    }
+
+    public void Continue()
+    {
+        SceneManager.LoadScene(scene);
+    }
+
+    public void BossBattle()
+    {
+        SceneManager.LoadScene(bossScene);
+    }
+
+    public void Exit()
+    {
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+        Application.Quit();
     }
 }
