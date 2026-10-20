@@ -14,8 +14,8 @@ public class SephirothBattleMovement : MonoBehaviour
     public float distance = 2f;
     public float tilt = 10f;
     private int damage = 150;
-    private bool phase1 = true;
-    private bool phase2 = false;
+    public bool phase1 = true;
+    public bool phase2 = false;
 
     void Start()
     {

@@ -7,6 +7,7 @@ public class CloudBattleMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     Animator animator;
     public Animator sephi;
+    public SephirothBattleMovement sephiBattle;
     Rigidbody rb;
     CombatManager cm;
     public Button braver;
@@ -58,10 +59,12 @@ public class CloudBattleMovement : MonoBehaviour
         sounds.Braver();
 
         yield return new WaitForSeconds(0.9f);
+        
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
         cm.sephiHP = cm.sephiHP - damage;
-        sephi.SetTrigger("Stagger 2");
+        yield return new WaitForSeconds(0.3f);
+        EnemyDamageTaken(true);
         yield return new WaitForSeconds(1.3f);
         MoveBack();
     }
@@ -80,6 +83,7 @@ public class CloudBattleMovement : MonoBehaviour
         sounds.Focused();
 
         yield return new WaitForSeconds(0.9f);
+        EnemyDamageTaken(true);
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
         cm.sephiHP = cm.sephiHP - damage;
@@ -100,10 +104,13 @@ public class CloudBattleMovement : MonoBehaviour
         sounds.Punisher();
 
         yield return new WaitForSeconds(0.4583f);
+        EnemyDamageTaken(true);
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
         cm.sephiHP = cm.sephiHP - damage;
+        
         yield return new WaitForSeconds(1.7f);
+        
         MoveBack();
     }
     public void Cure()
@@ -139,6 +146,7 @@ public class CloudBattleMovement : MonoBehaviour
         sounds.Limit_Break();
 
         yield return new WaitForSeconds(2.5f);
+        EnemyDamageTaken(true);
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
         cm.sephiHP = cm.sephiHP - limitDamage;
@@ -148,12 +156,27 @@ public class CloudBattleMovement : MonoBehaviour
     void MoveBack()
     {
         cloud.localPosition = Vector3.zero;
+        EnemyDamageTaken(false);
         StartCoroutine(Turn());
+    }
+
+    void EnemyDamageTaken(bool stagger)
+    {
+        if(sephiBattle.phase2)
+        {
+            sephi.SetBool("Stagger 2", stagger);
+        }
+
+        if(sephiBattle.phase1)
+        {
+            sephi.SetBool("Stagger", stagger);
+        }
     }
 
     IEnumerator Turn()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
+        
         cm.cloud = false;
         cm.sephi = true;
         cm.Combat();

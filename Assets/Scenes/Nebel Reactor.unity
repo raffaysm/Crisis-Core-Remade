@@ -4030,6 +4030,10 @@ PrefabInstance:
       propertyPath: ascension
       value: 
       objectReference: {fileID: 638959710}
+    - target: {fileID: 7962589406027293857, guid: fef7f4f4a91abf24c8806df79907ec76, type: 3}
+      propertyPath: sephiBattle
+      value: 
+      objectReference: {fileID: 1120593749}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5731,7 +5735,7 @@ PrefabInstance:
       objectReference: {fileID: 769203414}
     - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
       propertyPath: sephiHP
-      value: 500
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
       propertyPath: limitMenu
@@ -5749,6 +5753,10 @@ PrefabInstance:
       propertyPath: attackMenu
       value: 
       objectReference: {fileID: 1313263597}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: cloudLimit
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
       propertyPath: cloudBattle
       value: 
