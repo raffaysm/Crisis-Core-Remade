@@ -6,6 +6,7 @@ public class CloudBattleMovement : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     Animator animator;
+    public Animator sephi;
     Rigidbody rb;
     CombatManager cm;
     public Button braver;
@@ -60,6 +61,7 @@ public class CloudBattleMovement : MonoBehaviour
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
         cm.sephiHP = cm.sephiHP - damage;
+        sephi.SetTrigger("Stagger 2");
         yield return new WaitForSeconds(1.3f);
         MoveBack();
     }

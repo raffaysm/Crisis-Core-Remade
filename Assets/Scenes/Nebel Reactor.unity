@@ -4011,6 +4011,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1120593753}
     - target: {fileID: 7962589406027293857, guid: fef7f4f4a91abf24c8806df79907ec76, type: 3}
+      propertyPath: sephi
+      value: 
+      objectReference: {fileID: 2012023773}
+    - target: {fileID: 7962589406027293857, guid: fef7f4f4a91abf24c8806df79907ec76, type: 3}
       propertyPath: braver
       value: 
       objectReference: {fileID: 295341028}
@@ -5726,6 +5730,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 769203414}
     - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: sephiHP
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
       propertyPath: limitMenu
       value: 
       objectReference: {fileID: 1332126517}
@@ -7285,6 +7293,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1975287171}
   m_CullTransparentMesh: 1
+--- !u!95 &2012023773 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7615297433521938626, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
+  m_PrefabInstance: {fileID: 8186253835352504895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2106442281 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4671745566767023738, guid: 1d12a835d4d17804a83837e2d316801d, type: 3}
