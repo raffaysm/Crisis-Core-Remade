@@ -121,6 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fac51c743c374a45a87acc5ea38df3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  sephi: {fileID: 0}
+  sephiBattle: {fileID: 0}
+  vfx: {fileID: 0}
   braver: {fileID: 0}
   focused: {fileID: 0}
   punisher: {fileID: 0}
@@ -159,6 +162,11 @@ MonoBehaviour:
   cure: []
   ascension:
   - {fileID: 8300000, guid: b71edeff581916548a3bfc50fc558772, type: 3}
+  braverAttack: {fileID: 0}
+  focusedAttack: {fileID: 0}
+  punisherAttack: {fileID: 0}
+  cureHeal: {fileID: 0}
+  limitBreak: {fileID: 0}
 --- !u!82 &7466239518243317686
 AudioSource:
   m_ObjectHideFlags: 0

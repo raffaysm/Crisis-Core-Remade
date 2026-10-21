@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.VFX;
 
 public class CloudBattleMovement : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class CloudBattleMovement : MonoBehaviour
     Animator animator;
     public Animator sephi;
     public SephirothBattleMovement sephiBattle;
+    public CloudAnimationMove anim;
+    public GameObject braverVfx;
+    public GameObject punisherVfx;
+    public Vector3 vfxRotationOffset;
+    public Vector3 vfxPositionOffset;
+    public Transform busterSword;
     Rigidbody rb;
     CombatManager cm;
     public Button braver;
@@ -52,6 +59,7 @@ public class CloudBattleMovement : MonoBehaviour
 
     IEnumerator BraverHit()
     {
+        anim.attack = "braver";
         cm.attackMenu.SetActive(false);
         cm.attackButton.interactable = false;
         animator.SetTrigger("Braver");
@@ -97,18 +105,17 @@ public class CloudBattleMovement : MonoBehaviour
 
     IEnumerator PunisherHit()
     {
+        anim.attack = "punisher";
         cm.attackMenu.SetActive(false);
         cm.attackButton.interactable = false;
         animator.SetTrigger("Punisher");
         sounds.Play(sounds.punisher);
         sounds.Punisher();
-
         yield return new WaitForSeconds(0.4583f);
         EnemyDamageTaken(true);
         Vector3 direction = (enemy.position - cloud.position).normalized;
         cloud.position = enemy.position - direction * distance;
         cm.sephiHP = cm.sephiHP - damage;
-        
         yield return new WaitForSeconds(1.7f);
         
         MoveBack();
@@ -170,6 +177,22 @@ public class CloudBattleMovement : MonoBehaviour
         if(sephiBattle.phase1)
         {
             sephi.SetBool("Stagger", stagger);
+        }
+    }
+
+    public void PlayVFX(string attack)
+    {
+        GameObject vfx = null;
+        if (attack == "braver") vfx = braverVfx;
+        if (attack == "punisher") vfx = punisherVfx;
+        if (vfx != null && busterSword != null)
+        {
+            GameObject spawnedVFX = Instantiate(vfx, busterSword.position, busterSword.rotation, busterSword);
+
+            spawnedVFX.transform.localPosition = vfxPositionOffset;
+            spawnedVFX.transform.localRotation = Quaternion.Euler(vfxRotationOffset);
+
+            Destroy(spawnedVFX, 2f);
         }
     }
 
