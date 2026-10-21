@@ -10,10 +10,12 @@ public class CloudBattleMovement : MonoBehaviour
     public Animator sephi;
     public SephirothBattleMovement sephiBattle;
     public CloudAnimationMove anim;
-    public GameObject braverVfx;
-    public GameObject punisherVfx;
-    public Vector3 vfxRotationOffset;
+    public GameObject vfx;
+    public GameObject cureVfx;
+    public Transform fakeCloud;
     public Vector3 vfxPositionOffset;
+    public Vector3 vfxRotationOffset;
+    
     public Transform busterSword;
     Rigidbody rb;
     CombatManager cm;
@@ -84,6 +86,7 @@ public class CloudBattleMovement : MonoBehaviour
 
     IEnumerator FocusedHit()
     {
+        anim.attack = "focused";
         cm.attackMenu.SetActive(false);
         cm.attackButton.interactable = false;
         animator.SetTrigger("Focused");
@@ -146,6 +149,7 @@ public class CloudBattleMovement : MonoBehaviour
 
     IEnumerator AscensionHit()
     {
+        anim.attack = "ascension";
         cm.attackMenu.SetActive(false);
         cm.attackButton.interactable = false;
         animator.SetTrigger("Ascension");
@@ -180,19 +184,33 @@ public class CloudBattleMovement : MonoBehaviour
         }
     }
 
-    public void PlayVFX(string attack)
+    public void PlayAttackVFX(string attack)
     {
-        GameObject vfx = null;
-        if (attack == "braver") vfx = braverVfx;
-        if (attack == "punisher") vfx = punisherVfx;
+
         if (vfx != null && busterSword != null)
         {
-            GameObject spawnedVFX = Instantiate(vfx, busterSword.position, busterSword.rotation, busterSword);
+            Vector3 pos = enemy.position + vfxPositionOffset;
+            Quaternion rot = busterSword.rotation * Quaternion.Euler(vfxRotationOffset);
+            GameObject spawned = Instantiate(vfx, pos, rot);
+            Destroy(spawned, 2f);
+        }
+    }
+    public void PlayCureVFX()
+    {
 
-            spawnedVFX.transform.localPosition = vfxPositionOffset;
-            spawnedVFX.transform.localRotation = Quaternion.Euler(vfxRotationOffset);
+        // Check for Cloud instead of the Buster Sword
+        if (cureVfx != null && cloud != null)
+        {
+            // Instantiate and immediately parent it to Cloud
+            GameObject spawned = Instantiate(cureVfx, fakeCloud);
 
-            Destroy(spawnedVFX, 2f);
+            // Apply position offset (e.g., Y = 0 for feet, Y = 1 for chest)
+            spawned.transform.position = fakeCloud.position + vfxPositionOffset;
+
+            // Apply rotation, staying aligned with Cloud
+            spawned.transform.rotation = fakeCloud.rotation * Quaternion.Euler(vfxRotationOffset);
+
+            Destroy(spawned, 2f);
         }
     }
 

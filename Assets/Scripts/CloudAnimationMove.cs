@@ -23,11 +23,18 @@ public class CloudAnimationMove : MonoBehaviour
             parent.RootMovement();
         }
     }
-    public void TriggerVFX()
+    public void TriggerAttackVFX()
     {
         if (parent != null)
         {
-            parent.PlayVFX(attack);
+            parent.PlayAttackVFX(attack);
+        }
+    }
+    public void TriggerCureVFX()
+    {
+        if (parent != null)
+        {
+            parent.PlayCureVFX();
         }
     }
 }
