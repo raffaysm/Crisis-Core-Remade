@@ -1,0 +1,158 @@
+using Unity.VisualScripting;
+using System.Collections;
+using UnityEngine;
+
+public class SephirothTest : MonoBehaviour
+{
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    Rigidbody rb;
+    Animator animator;
+    TestManager cm;
+    public SephirothAudio sounds;
+    public Transform enemy;
+    public Transform sephi;
+    public float distance = 2f;
+    public float tilt = 10f;
+    private int damage = 1;
+    public bool phase1 = true;
+    public bool phase2 = false;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
+        cm = TestManager.cm;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void RootMovement()
+    {
+        if (rb && animator)
+        {
+            Vector3 newPosition = rb.position + animator.deltaPosition;
+            rb.MovePosition(newPosition);
+        }
+    }
+
+    public void SephiAttack()
+    {
+        if (phase1 && cm.sephiHP <= cm.sephiMaxHP / 2)
+        {
+            //StartCoroutine(PhaseChange());
+            return;
+        }
+
+        if (phase1)
+        {
+            int randomAction = Random.Range(1, 4);
+
+            if (randomAction == 1)
+            {
+                SephiAttack1();
+            }
+            if (randomAction == 2)
+            {
+                SephiAttack2();
+            }
+            if (randomAction == 3)
+            {
+                SephiAttack3();
+            }
+
+        }
+
+        if (phase2)
+        {
+            AngelAttack1();
+        }
+    }
+
+    IEnumerator PhaseChange()
+    {
+        rb.useGravity = false;
+        rb.isKinematic = true;
+        animator.SetTrigger("Phase");
+        yield return new WaitForSeconds(5.833f);
+        Vector3 endPosition = sephi.position;
+        phase1 = false;
+        phase2 = true;
+        sephi.localRotation = Quaternion.Euler(0f, 0f, tilt);
+        SephiAttack();
+    }
+    public void SephiAttack1()
+    {
+        StartCoroutine(SephiAttack1Hit());
+    }
+
+    IEnumerator SephiAttack1Hit()
+    {
+        animator.SetTrigger("Attack 1");
+        sounds.Play(sounds.attacks);
+        yield return new WaitForSeconds(1.5f);
+        Vector3 direction = (enemy.position - sephi.position).normalized;
+        sephi.position = enemy.position - direction * distance;
+        yield return new WaitForSeconds(2f);
+        MoveBack();
+    }
+
+    public void SephiAttack2()
+    {
+        StartCoroutine(SephiAttack2Hit());
+    }
+
+    IEnumerator SephiAttack2Hit()
+    {
+        animator.SetTrigger("Attack 2");
+        sounds.Play(sounds.attacks);
+        yield return new WaitForSeconds(0.916f);
+        Vector3 direction = (enemy.position - sephi.position).normalized;
+        sephi.position = enemy.position - direction * distance;
+        yield return new WaitForSeconds(3.083f);
+        MoveBack();
+    }
+
+    public void SephiAttack3()
+    {
+        StartCoroutine(SephiAttack3Hit());
+    }
+
+    IEnumerator SephiAttack3Hit()
+    {
+        animator.SetTrigger("Attack 3");
+        sounds.Play(sounds.attacks);
+        yield return new WaitForSeconds(5.833f);
+        MoveBack();
+    }
+    public void AngelAttack1()
+    {
+        StartCoroutine(AngelAttack1Hit());
+    }
+
+    IEnumerator AngelAttack1Hit()
+    {
+        animator.SetTrigger("Angel 1");
+        sounds.Play(sounds.attacks);
+        yield return new WaitForSeconds(5.833f);
+        MoveBack();
+    }
+    void MoveBack()
+    {
+        cm.cloudHP = cm.cloudHP - damage;
+        cm.cloudDamageTaken = cm.cloudDamageTaken + damage;
+        sephi.localPosition = Vector3.zero;
+        //StartCoroutine(Turn());
+    }
+
+    IEnumerator Turn()
+    {
+        yield return new WaitForSeconds(1f);
+        //cm.cloud = true;
+        //cm.sephi = false;
+        cm.Combat();
+    }
+}

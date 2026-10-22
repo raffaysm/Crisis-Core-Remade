@@ -22,7 +22,7 @@ public class CombatManager : MonoBehaviour
     public CloudBattleMovement cloudBattle;
     public SephirothBattleMovement sephiBattle;
     public bool cloud = true;
-    public bool sephi = false;
+    public bool sephi = false;  
     private int maxCloudHP = 777;
     public int cloudHP = 777;
     public int cloudMP = 77;

@@ -123,14 +123,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   sephi: {fileID: 0}
   sephiBattle: {fileID: 0}
-  vfx: {fileID: 0}
+  anim: {fileID: 3166226077536505286}
+  vfx: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b, type: 3}
+  cureVfx: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+  fakeCloud: {fileID: 0}
+  vfxPositionOffset: {x: 0, y: 1, z: 0}
+  vfxRotationOffset: {x: 0, y: 0, z: -170}
+  busterSword: {fileID: 1376980431695509813}
   braver: {fileID: 0}
   focused: {fileID: 0}
   punisher: {fileID: 0}
   cure: {fileID: 0}
   ascension: {fileID: 0}
   enemy: {fileID: 0}
-  cloud: {fileID: 3677340791002822494}
+  cloud: {fileID: 6739634493187835943}
   sounds: {fileID: 3677701260121887638}
   distance: 2.5
 --- !u!114 &3677701260121887638
@@ -147,26 +153,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   audioSource: {fileID: 7466239518243317686}
   braver:
-  - {fileID: 8300000, guid: 2b038dbd9e52ee94fbc2aefd4bda7666, type: 3}
-  - {fileID: 8300000, guid: b78f22b72ac807c4db4ebb7b9b5f8498, type: 3}
-  - {fileID: 8300000, guid: 9b516e4c93de9cc4388e66fee9df461e, type: 3}
-  - {fileID: 8300000, guid: a3203602128c1bb47b459d4d4387a133, type: 3}
-  - {fileID: 8300000, guid: 0dfb753c5c945a84fb06d0b2ee1676a6, type: 3}
+  - {fileID: 8300000, guid: 640878ecf0415f64490f5968c7804842, type: 3}
+  - {fileID: 8300000, guid: fa68125dbd468ca40953ede4953199c5, type: 3}
+  - {fileID: 8300000, guid: 5286cf96d52311f41af626777d74213a, type: 3}
+  - {fileID: 8300000, guid: 32c04b269ed78d540b14d4af911d9497, type: 3}
   focused:
-  - {fileID: 8300000, guid: 69d8ad32fcac56340a1a0de975a3cc59, type: 3}
-  - {fileID: 8300000, guid: a4a2d94c9960e474f8d0e7f66dcf01eb, type: 3}
-  - {fileID: 8300000, guid: 778fe123afac84e42b5aba9f7d74734f, type: 3}
-  - {fileID: 8300000, guid: bb1a97e953fd9af4eb6e99bb753d6468, type: 3}
-  - {fileID: 8300000, guid: 5ec0716f0388e71418f265e48111e897, type: 3}
-  punisher: []
+  - {fileID: 8300000, guid: a1c16a403b21bba4886983880ac3acec, type: 3}
+  - {fileID: 8300000, guid: 640878ecf0415f64490f5968c7804842, type: 3}
+  - {fileID: 8300000, guid: 5286cf96d52311f41af626777d74213a, type: 3}
+  - {fileID: 8300000, guid: 32c04b269ed78d540b14d4af911d9497, type: 3}
+  punisher:
+  - {fileID: 8300000, guid: 5286cf96d52311f41af626777d74213a, type: 3}
+  - {fileID: 8300000, guid: 640878ecf0415f64490f5968c7804842, type: 3}
   cure: []
   ascension:
-  - {fileID: 8300000, guid: b71edeff581916548a3bfc50fc558772, type: 3}
-  braverAttack: {fileID: 0}
-  focusedAttack: {fileID: 0}
-  punisherAttack: {fileID: 0}
-  cureHeal: {fileID: 0}
-  limitBreak: {fileID: 0}
+  - {fileID: 8300000, guid: 5286cf96d52311f41af626777d74213a, type: 3}
+  braverAttack: {fileID: 8300000, guid: 6ce40bd567baf894594d82dd761dce8d, type: 3}
+  focusedAttack: {fileID: 8300000, guid: 25f14a0d4b9050c46a87fa00ce979f9c, type: 3}
+  punisherAttack: {fileID: 8300000, guid: da9ab63ffe0b8884d97ae974ee099e0c, type: 3}
+  cureHeal: {fileID: 8300000, guid: f233c2bbb0cb04347b0e6a1954110bc3, type: 3}
+  limitBreak: {fileID: 8300000, guid: 174bdad2c76ba97459470c0b36659673, type: 3}
 --- !u!82 &7466239518243317686
 AudioSource:
   m_ObjectHideFlags: 0
@@ -180,7 +186,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -500,6 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f68d7fb88499f408db6f347e6b9e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CloudAnimationMove
+  attack: 
 --- !u!4 &6739634493187835943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08322ad2bac22f0458ab17d15e7679e2, type: 3}
