@@ -57,6 +57,7 @@ public class CloudBattleMovement : MonoBehaviour
     public void Braver()
     {
         cm.Combat(false, true);
+        cm.LockMenuForAction();
         StartCoroutine(BraverHit());
     }
 
@@ -83,6 +84,7 @@ public class CloudBattleMovement : MonoBehaviour
     public void Focused()
     {
         cm.Combat(false, true);
+        cm.LockMenuForAction();
         StartCoroutine(FocusedHit());
     }
 
@@ -106,6 +108,7 @@ public class CloudBattleMovement : MonoBehaviour
     public void Punisher()
     {
         cm.Combat(false, true);
+        cm.LockMenuForAction();
         StartCoroutine(PunisherHit());
     }
 
@@ -130,6 +133,7 @@ public class CloudBattleMovement : MonoBehaviour
     {
         if(cm.cloudMP >= mpCost)
         {
+            cm.LockMenuForAction();
             cm.Combat(false, true);
             cm.magicMenu.SetActive(false);
             cm.magicButton.interactable = false;
@@ -145,6 +149,7 @@ public class CloudBattleMovement : MonoBehaviour
     {
         if(cm.cloudDamageTaken >= 1000)
         {
+            cm.LockMenuForAction();
             cm.Combat(false, true);
             cm.limitMenu.SetActive(false);
             cm.limitButton.interactable = false;

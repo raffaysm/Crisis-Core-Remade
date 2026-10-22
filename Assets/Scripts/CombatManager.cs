@@ -1,6 +1,7 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CombatManager : MonoBehaviour
@@ -8,7 +9,7 @@ public class CombatManager : MonoBehaviour
     public static CombatManager cm;
     public AudioSource sounds;
     public AudioClip start;
-    public GameObject pauseMenu;
+    public GameObject battleMenu;
     public GameObject gameOverMenu;
     public GameObject attackMenu;
     public GameObject magicMenu;
@@ -24,7 +25,6 @@ public class CombatManager : MonoBehaviour
     private int maxCloudHP = 777;
     public int cloudHP = 777;
     public int cloudMP = 77;
-
     public int limitRequirement = 1000;
     public int cloudLimit = 0;
     public int cloudDamageTaken = 0;
@@ -41,8 +41,13 @@ public class CombatManager : MonoBehaviour
     {
         cloudBattle = FindAnyObjectByType<CloudBattleMovement>();
         Invoke("ActivatingCombatMode", 0.5f);
+        Invoke("BattleMenu", 4.375f);
     }
 
+    void BattleMenu()
+    {
+        battleMenu.SetActive(true);
+    }
     void ActivatingCombatMode()
     {
         if(sounds != null)
@@ -59,6 +64,12 @@ public class CombatManager : MonoBehaviour
             attackMenu.SetActive(false);
             magicMenu.SetActive(false);
             limitMenu.SetActive(false);
+            attackButton.GetComponent<EventTrigger>().enabled = true;
+            magicButton.GetComponent<EventTrigger>().enabled = true;
+            limitButton.GetComponent<EventTrigger>().enabled = true;
+            attackButton.interactable = true;
+            magicButton.interactable = true;
+            limitButton.interactable = true;
         }
 
         // minimum HP to 0
@@ -105,31 +116,10 @@ public class CombatManager : MonoBehaviour
             gameOverMenu.SetActive(true);
         }
     }
-    public void isPaused()
-    {
-        Time.timeScale = 0f;
-        Pause();
-    }
-
-    public void Pause()
-    {
-        pauseMenu.SetActive(true);
-    }
-
-    public void isResumed()
-    {
-        Time.timeScale = 1f;
-        Resume();
-    }
 
     public void close()
     {
         Application.Quit();
-    }
-
-    public void Resume()
-    {
-        pauseMenu.SetActive(false);
     }
 
     public void CloudAttack()
@@ -137,6 +127,12 @@ public class CombatManager : MonoBehaviour
         attackMenu.SetActive(true);
         magicMenu.SetActive(false);
         limitMenu.SetActive(false);
+        attackButton.interactable = false;
+        magicButton.interactable = false;
+        limitButton.interactable = false;
+        attackButton.GetComponent<EventTrigger>().enabled = false;
+        magicButton.GetComponent<EventTrigger>().enabled = false;
+        limitButton.GetComponent<EventTrigger>().enabled = false;
 
     }
 
@@ -145,6 +141,12 @@ public class CombatManager : MonoBehaviour
         magicMenu.SetActive(true);
         attackMenu.SetActive(false);
         limitMenu.SetActive(false);
+        attackButton.interactable = false;
+        magicButton.interactable = false;
+        limitButton.interactable = false;
+        attackButton.GetComponent<EventTrigger>().enabled = false;
+        magicButton.GetComponent<EventTrigger>().enabled = false;
+        limitButton.GetComponent<EventTrigger>().enabled = false;
     }
 
     public void CloudLimit()
@@ -152,6 +154,30 @@ public class CombatManager : MonoBehaviour
         limitMenu.SetActive(true);
         attackMenu.SetActive(false);
         magicMenu.SetActive(false);
+        attackButton.interactable = false;
+        magicButton.interactable = false;
+        limitButton.interactable = false;
+        attackButton.GetComponent<EventTrigger>().enabled = false;
+        magicButton.GetComponent<EventTrigger>().enabled = false;
+        limitButton.GetComponent<EventTrigger>().enabled = false;
+    }
+    public void LockMenuForAction()
+    {
+        // Close all sub-menus
+        attackMenu.SetActive(false);
+        magicMenu.SetActive(false);
+        limitMenu.SetActive(false);
+
+        // Force pointers to turn off
+
+        // Disable main buttons and triggers completely
+        attackButton.interactable = false;
+        magicButton.interactable = false;
+        limitButton.interactable = false;
+
+        attackButton.GetComponent<EventTrigger>().enabled = false;
+        magicButton.GetComponent<EventTrigger>().enabled = false;
+        limitButton.GetComponent<EventTrigger>().enabled = false;
     }
     public void Combat(bool cloud = true, bool sephi = false)
     {
@@ -160,6 +186,9 @@ public class CombatManager : MonoBehaviour
             attackButton.interactable = true;
             magicButton.interactable = true;
             limitButton.interactable = true;
+            attackButton.GetComponent<EventTrigger>().enabled = true;
+            magicButton.GetComponent<EventTrigger>().enabled = true;
+            limitButton.GetComponent<EventTrigger>().enabled = true;
         }
 
         if (sephi)
@@ -167,6 +196,9 @@ public class CombatManager : MonoBehaviour
             attackButton.interactable = false;
             magicButton.interactable = false;
             limitButton.interactable = false;
+            attackButton.GetComponent<EventTrigger>().enabled = false;
+            magicButton.GetComponent<EventTrigger>().enabled = false;
+            limitButton.GetComponent<EventTrigger>().enabled = false;
         }
     }
 }
