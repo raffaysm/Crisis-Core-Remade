@@ -21,8 +21,6 @@ public class CombatManager : MonoBehaviour
     public TMP_Text Limit;
     public CloudBattleMovement cloudBattle;
     public SephirothBattleMovement sephiBattle;
-    public bool cloud = true;
-    public bool sephi = false;  
     private int maxCloudHP = 777;
     public int cloudHP = 777;
     public int cloudMP = 77;
@@ -58,7 +56,9 @@ public class CombatManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isPaused();
+            attackMenu.SetActive(false);
+            magicMenu.SetActive(false);
+            limitMenu.SetActive(false);
         }
 
         // minimum HP to 0
@@ -137,6 +137,7 @@ public class CombatManager : MonoBehaviour
         attackMenu.SetActive(true);
         magicMenu.SetActive(false);
         limitMenu.SetActive(false);
+
     }
 
     public void CloudMagic()
@@ -152,7 +153,7 @@ public class CombatManager : MonoBehaviour
         attackMenu.SetActive(false);
         magicMenu.SetActive(false);
     }
-    public void Combat()
+    public void Combat(bool cloud = true, bool sephi = false)
     {
         if (cloud)
         {
@@ -166,7 +167,6 @@ public class CombatManager : MonoBehaviour
             attackButton.interactable = false;
             magicButton.interactable = false;
             limitButton.interactable = false;
-            sephiBattle.SephiAttack();
         }
     }
 }

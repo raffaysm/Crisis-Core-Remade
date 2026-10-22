@@ -56,6 +56,7 @@ public class CloudBattleMovement : MonoBehaviour
 
     public void Braver()
     {
+        cm.Combat(false, true);
         StartCoroutine(BraverHit());
     }
 
@@ -81,6 +82,7 @@ public class CloudBattleMovement : MonoBehaviour
 
     public void Focused()
     {
+        cm.Combat(false, true);
         StartCoroutine(FocusedHit());
     }
 
@@ -103,6 +105,7 @@ public class CloudBattleMovement : MonoBehaviour
     }
     public void Punisher()
     {
+        cm.Combat(false, true);
         StartCoroutine(PunisherHit());
     }
 
@@ -127,6 +130,7 @@ public class CloudBattleMovement : MonoBehaviour
     {
         if(cm.cloudMP >= mpCost)
         {
+            cm.Combat(false, true);
             cm.magicMenu.SetActive(false);
             cm.magicButton.interactable = false;
             animator.SetTrigger("Cure");
@@ -141,6 +145,7 @@ public class CloudBattleMovement : MonoBehaviour
     {
         if(cm.cloudDamageTaken >= 1000)
         {
+            cm.Combat(false, true);
             cm.limitMenu.SetActive(false);
             cm.limitButton.interactable = false;
             StartCoroutine(AscensionHit());
@@ -217,9 +222,6 @@ public class CloudBattleMovement : MonoBehaviour
     IEnumerator Turn()
     {
         yield return new WaitForSeconds(2.5f);
-        
-        cm.cloud = false;
-        cm.sephi = true;
-        cm.Combat();
+        sephiBattle.SephiAttack();
     }
 }

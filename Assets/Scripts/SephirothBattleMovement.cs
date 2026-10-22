@@ -151,8 +151,6 @@ public class SephirothBattleMovement : MonoBehaviour
     IEnumerator Turn()
     {
         yield return new WaitForSeconds(1f);
-        cm.cloud = true;
-        cm.sephi = false;
-        cm.Combat();
+        cm.Combat(true, false);
     }
 }
