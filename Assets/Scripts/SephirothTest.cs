@@ -8,6 +8,7 @@ public class SephirothTest : MonoBehaviour
     Rigidbody rb;
     Animator animator;
     TestManager cm;
+    public testanimation anim;
     public SephirothAudio sounds;
     public Transform enemy;
     public Transform sephi;
@@ -16,6 +17,10 @@ public class SephirothTest : MonoBehaviour
     private int damage = 1;
     public bool phase1 = true;
     public bool phase2 = false;
+    public GameObject vfx;
+    public Vector3 vfxPositionOffset;
+    public Vector3 vfxRotationOffset;
+    public Transform sword;
 
     void Start()
     {
@@ -91,6 +96,7 @@ public class SephirothTest : MonoBehaviour
 
     IEnumerator SephiAttack1Hit()
     {
+        anim.attack = "attack1";
         animator.SetTrigger("Attack 1");
         sounds.Play(sounds.attacks);
         yield return new WaitForSeconds(1.5f);
@@ -125,7 +131,9 @@ public class SephirothTest : MonoBehaviour
     {
         animator.SetTrigger("Attack 3");
         sounds.Play(sounds.attacks);
-        yield return new WaitForSeconds(5.833f);
+        Vector3 direction = (enemy.position - sephi.position).normalized;
+        sephi.position = enemy.position - direction * distance;
+        yield return new WaitForSeconds(3.25f);
         MoveBack();
     }
     public void AngelAttack1()
@@ -139,6 +147,16 @@ public class SephirothTest : MonoBehaviour
         sounds.Play(sounds.attacks);
         yield return new WaitForSeconds(5.833f);
         MoveBack();
+    }
+    public void PlayAttackVFX(string attack)
+    {
+        if (vfx != null && sword != null)
+        {
+            Vector3 pos = enemy.position + vfxPositionOffset;
+            Quaternion rot = sword.rotation * Quaternion.Euler(vfxRotationOffset);
+            GameObject spawned = Instantiate(vfx, pos, rot);
+            Destroy(spawned, 2f);
+        }
     }
     void MoveBack()
     {

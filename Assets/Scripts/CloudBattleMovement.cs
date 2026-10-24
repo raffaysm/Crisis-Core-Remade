@@ -6,17 +6,15 @@ using UnityEngine.VFX;
 public class CloudBattleMovement : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    Animator animator;
-    public Animator sephi;
+    Animator cloudAnimator;
+    public Animator sephiAnimator;
     public SephirothBattleMovement sephiBattle;
     public CloudAnimationMove anim;
     public GameObject vfx;
     public GameObject cureVfx;
     public Transform fakeCloud;
     public Vector3 vfxPositionOffset;
-    public Vector3 vfxRotationOffset;
-    
-    public Transform busterSword;
+    public Vector3 vfxRotationOffset;    public Transform busterSword;
     Rigidbody rb;
     CombatManager cm;
     public Button braver;
@@ -35,7 +33,7 @@ public class CloudBattleMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponentInChildren<Animator>();
+        cloudAnimator = GetComponentInChildren<Animator>();
         cm = CombatManager.cm;
     }
 
@@ -47,9 +45,9 @@ public class CloudBattleMovement : MonoBehaviour
 
     public void RootMovement()
     {
-        if(animator && rb)
+        if(cloudAnimator && rb)
         {
-            Vector3 newPosition = rb.position + animator.deltaPosition;
+            Vector3 newPosition = rb.position + cloudAnimator.deltaPosition;
             rb.MovePosition(newPosition);
         }
     }
@@ -66,7 +64,7 @@ public class CloudBattleMovement : MonoBehaviour
         anim.attack = "braver";
         cm.attackMenu.SetActive(false);
         cm.attackButton.interactable = false;
-        animator.SetTrigger("Braver");
+        cloudAnimator.SetTrigger("Braver");
         sounds.Play(sounds.braver);
         sounds.Braver();
 
@@ -93,7 +91,7 @@ public class CloudBattleMovement : MonoBehaviour
         anim.attack = "focused";
         cm.attackMenu.SetActive(false);
         cm.attackButton.interactable = false;
-        animator.SetTrigger("Focused");
+        cloudAnimator.SetTrigger("Focused");
         sounds.Play(sounds.focused);
         sounds.Focused();
 
@@ -117,7 +115,7 @@ public class CloudBattleMovement : MonoBehaviour
         anim.attack = "punisher";
         cm.attackMenu.SetActive(false);
         cm.attackButton.interactable = false;
-        animator.SetTrigger("Punisher");
+        cloudAnimator.SetTrigger("Punisher");
         sounds.Play(sounds.punisher);
         sounds.Punisher();
         yield return new WaitForSeconds(0.4583f);
@@ -137,7 +135,7 @@ public class CloudBattleMovement : MonoBehaviour
             cm.Combat(false, true);
             cm.magicMenu.SetActive(false);
             cm.magicButton.interactable = false;
-            animator.SetTrigger("Cure");
+            cloudAnimator.SetTrigger("Cure");
             sounds.Cure();
             cm.cloudHP = cm.cloudHP + heal;
             cm.cloudMP = cm.cloudMP - mpCost;
@@ -162,7 +160,7 @@ public class CloudBattleMovement : MonoBehaviour
         anim.attack = "ascension";
         cm.attackMenu.SetActive(false);
         cm.attackButton.interactable = false;
-        animator.SetTrigger("Ascension");
+        cloudAnimator.SetTrigger("Ascension");
         sounds.Play(sounds.ascension);
         sounds.Limit_Break();
 
@@ -177,20 +175,27 @@ public class CloudBattleMovement : MonoBehaviour
     void MoveBack()
     {
         cloud.localPosition = Vector3.zero;
-        EnemyDamageTaken(false);
-        StartCoroutine(Turn());
+        if(cm.sephiHP <= 0)
+        {
+            cm.CloudWins();
+        }
+        else
+        {
+            EnemyDamageTaken(false);
+            StartCoroutine(Turn());
+        }
     }
 
     void EnemyDamageTaken(bool stagger)
     {
         if(sephiBattle.phase2)
         {
-            sephi.SetBool("Stagger 2", stagger);
+            sephiAnimator.SetBool("Stagger 2", stagger);
         }
 
         if(sephiBattle.phase1)
         {
-            sephi.SetBool("Stagger", stagger);
+            sephiAnimator.SetBool("Stagger", stagger);
         }
     }
 

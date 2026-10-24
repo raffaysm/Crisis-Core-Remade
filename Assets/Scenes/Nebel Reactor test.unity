@@ -825,8 +825,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2015391276231707944}
-        m_TargetAssemblyTypeName: CombatManager, Assembly-CSharp
+      - m_Target: {fileID: 5883669490547762732}
+        m_TargetAssemblyTypeName: TestManager, Assembly-CSharp
         m_MethodName: CloudAttack
         m_Mode: 1
         m_Arguments:
@@ -2138,7 +2138,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2015391276231707944}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CombatManager, Assembly-CSharp
         m_MethodName: CloudMagic
         m_Mode: 1
@@ -4977,7 +4977,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2015391276231707944}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CombatManager, Assembly-CSharp
         m_MethodName: CloudLimit
         m_Mode: 1
@@ -8699,7 +8699,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2767673500364144419}
-  - component: {fileID: 2015391276231707944}
   - component: {fileID: 5883669490547762731}
   - component: {fileID: 3368773544706561583}
   - component: {fileID: 5883669490547762732}
@@ -23160,43 +23159,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2015391276231707944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 216914094653021811}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37fb1d6c9b6483745bbb9a0a144fe19a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  sounds: {fileID: 3368773544706561583}
-  start: {fileID: 8300000, guid: 309cf6321e3d9c2489d3d2363a0bd6e7, type: 3}
-  pauseMenu: {fileID: 242091821}
-  gameOverMenu: {fileID: 1125045927}
-  attackMenu: {fileID: 1313263597}
-  magicMenu: {fileID: 829395811}
-  limitMenu: {fileID: 1332126517}
-  attackButton: {fileID: 192498032}
-  magicButton: {fileID: 586145744}
-  limitButton: {fileID: 1286892600}
-  HP: {fileID: 1123624235}
-  MP: {fileID: 1544737603}
-  Limit: {fileID: 769203414}
-  cloudBattle: {fileID: 7962589406593559607}
-  sephiBattle: {fileID: 2714312358660191393}
-  cloud: 1
-  sephi: 0
-  cloudHP: 777
-  cloudMP: 77
-  limitRequirement: 1000
-  cloudLimit: 1000
-  cloudDamageTaken: 1000
-  sephiHP: 1000
-  sephiMaxHP: 1000
-  sephiMP: 100
 --- !u!4 &2017717409635892418
 Transform:
   m_ObjectHideFlags: 0
@@ -28095,25 +28057,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2714312358660191393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4419455125327577824}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81924008e9ae8ba49b1338b05ad56582, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  sounds: {fileID: 1372937385301538011}
-  enemy: {fileID: 3677340791627415496}
-  sephi: {fileID: 5680655421000663175}
-  distance: 2.5
-  tilt: 10
-  phase1: 1
-  phase2: 0
 --- !u!4 &2714347017365782336
 Transform:
   m_ObjectHideFlags: 0
@@ -39716,7 +39659,6 @@ GameObject:
   - component: {fileID: 7889577110284384027}
   - component: {fileID: 9010062482759172013}
   - component: {fileID: 9003962819534312796}
-  - component: {fileID: 2714312358660191393}
   - component: {fileID: 1372937385301538011}
   - component: {fileID: 1389418299907894708}
   - component: {fileID: 9010062482759172014}
@@ -44804,7 +44746,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5680655421000663175}
   - component: {fileID: 1744461880800942845}
-  - component: {fileID: 8338460356359197580}
+  - component: {fileID: 8338460356359197581}
   m_Layer: 0
   m_Name: sephiroth
   m_TagString: Untagged
@@ -66000,8 +65942,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fac51c743c374a45a87acc5ea38df3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  sephi: {fileID: 1744461880800942845}
-  sephiBattle: {fileID: 2714312358660191393}
+  sephiAnimator: {fileID: 0}
+  sephiBattle: {fileID: 0}
   anim: {fileID: 3166226077851043152}
   vfx: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b, type: 3}
   cureVfx: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
@@ -68558,7 +68500,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8338460356359197580
+--- !u!114 &8338460356359197581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68567,9 +68509,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5016568731066964541}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b741513b48b82f43ae7aaaa1c220c3b, type: 3}
+  m_Script: {fileID: 11500000, guid: ac4a777b016948f4cb0b76d94dea29d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  parent: {fileID: 9010062482759172014}
+  attack: 
 --- !u!1 &8339234729113374552
 GameObject:
   m_ObjectHideFlags: 0
@@ -73417,6 +73361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e336bb122118ae449b5cc62e2f197d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  anim: {fileID: 8338460356359197581}
   sounds: {fileID: 1372937385301538011}
   enemy: {fileID: 3677340791627415496}
   sephi: {fileID: 5680655421000663175}
@@ -73424,6 +73369,10 @@ MonoBehaviour:
   tilt: 10
   phase1: 1
   phase2: 0
+  vfx: {fileID: 3153472991145048103, guid: 3407e378c048bb5438424b28c7740b48, type: 3}
+  vfxPositionOffset: {x: 0.00066, y: 0.00137, z: 0.01089}
+  vfxRotationOffset: {x: 12.685, y: -0.37, z: -93.051}
+  sword: {fileID: 5827667007325484178}
 --- !u!1 &9014439330333195242
 GameObject:
   m_ObjectHideFlags: 0
