@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 13ff33a5cb085ea49a6b431801259951
-  m_OcclusionCullingData: {fileID: 36300000, guid: bcf35decafaa88047977db02c50838f3, type: 2}
+  m_SceneGUID: 959565f09cb72d34b992ead1d12e91fe
+  m_OcclusionCullingData: {fileID: 36300000, guid: d6848c320abe1134199ccb3054ab0928, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -3987,13 +3987,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945709429}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.31670663, z: -0, w: 0.9485236}
-  m_LocalPosition: {x: 36.6, y: 3.633, z: 50.04}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 2.386, y: 74.227, z: -13.925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -36.928, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &956893675
 GameObject:
   m_ObjectHideFlags: 0
@@ -8713,6 +8713,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3153472991145048103, guid: 3407e378c048bb5438424b28c7740b48, type: 3}
     - target: {fileID: 6066426523181239966, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
+      propertyPath: aura
+      value: 
+      objectReference: {fileID: 7053385775836331393, guid: 354b6251e950209409c75ab984acf000, type: 3}
+    - target: {fileID: 6066426523181239966, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
       propertyPath: hand
       value: 
       objectReference: {fileID: 88334028}
@@ -8740,6 +8744,10 @@ PrefabInstance:
       propertyPath: fakeCloud
       value: 
       objectReference: {fileID: 1183155047}
+    - target: {fileID: 6066426523181239966, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
+      propertyPath: fakeSephi
+      value: 
+      objectReference: {fileID: 945709431}
     - target: {fileID: 6066426523181239966, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
       propertyPath: fakeCloud2
       value: 
@@ -8837,9 +8845,29 @@ PrefabInstance:
       value: -2.297
       objectReference: {fileID: 0}
     - target: {fileID: 7104091113440218852, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
+      propertyPath: angel1
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ed3eab2662e8d4479e761f0bf55f3b1, type: 3}
+    - target: {fileID: 7104091113440218852, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
+      propertyPath: angel2
+      value: 
+      objectReference: {fileID: 8300000, guid: 5270943028774f149867ebba7d2e4514, type: 3}
+    - target: {fileID: 7104091113440218852, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
+      propertyPath: angel3
+      value: 
+      objectReference: {fileID: 8300000, guid: c8cff687d3b4ba042a11fe346f495d87, type: 3}
+    - target: {fileID: 7104091113440218852, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
       propertyPath: attack1
       value: 
       objectReference: {fileID: 8300000, guid: f4ecc60c4230e3a489df54b815d032e5, type: 3}
+    - target: {fileID: 7104091113440218852, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
+      propertyPath: attack2
+      value: 
+      objectReference: {fileID: 8300000, guid: 83d97b8d7222fe247af969d05d70d7d8, type: 3}
+    - target: {fileID: 7104091113440218852, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
+      propertyPath: attack3
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e5a89a0f598d59468b94fbe5acc12cf, type: 3}
     - target: {fileID: 7104091113440218852, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
       propertyPath: attacks.Array.size
       value: 14
@@ -8860,6 +8888,10 @@ PrefabInstance:
       propertyPath: 'attacks.Array.data[13]'
       value: 
       objectReference: {fileID: 8300000, guid: 86295a5250b425540a3e43a2b12ee196, type: 3}
+    - target: {fileID: 7121139788663658379, guid: bc177cd9f6650e04c9f2a650a5feed34, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

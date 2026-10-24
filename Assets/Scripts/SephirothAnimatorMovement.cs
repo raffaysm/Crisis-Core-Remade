@@ -49,4 +49,11 @@ public class SephirothAnimatorMovement : MonoBehaviour
             parent.Explosion();
         }
     }
+    public void Aura()
+    {
+        if (parent != null)
+        {
+            parent.Aura();
+        }
+    }
 }

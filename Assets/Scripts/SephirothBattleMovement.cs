@@ -26,12 +26,14 @@ public class SephirothBattleMovement : MonoBehaviour
     public GameObject magicVfx;
     public GameObject magicHitVfx;
     public GameObject explosion;
+    public GameObject aura;
     public Vector3 magicVfxPositionOffset;
     public Vector3 magicVfxRotationOffset;
     public Transform sword;
     public Transform hand;
     public Transform fakeCloud;
     public Transform fakeCloud2;
+    public Transform fakeSephi;
 
     void Start()
     {
@@ -63,7 +65,7 @@ public class SephirothBattleMovement : MonoBehaviour
                 return;
             }
 
-            /*if (phase1)
+            if (phase1)
             {
                 int randomAction = Random.Range(1, 4);
 
@@ -80,17 +82,25 @@ public class SephirothBattleMovement : MonoBehaviour
                     SephiAttack3();
                 }
 
-            }*/
-
-            if (phase1)
-            {
-                SephiAttack1();
             }
 
             if (phase2)
             {
+            int randomAction = Random.Range(1, 4);
+
+            if (randomAction == 1)
+            {
+                AngelAttack1();
+            }
+            if (randomAction == 2)
+            {
+                AngelAttack2();
+            }
+            if (randomAction == 3)
+            {
                 AngelAttack3();
             }
+        }
     }
 
     IEnumerator PhaseChange()
@@ -117,6 +127,7 @@ public class SephirothBattleMovement : MonoBehaviour
         sounds.Attack1();
         yield return new WaitForSeconds(1.5f);
         EnemyDamageTaken(true);
+        cloudDamage.PlayOneShot(aargh, 0.5f);
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
         yield return new WaitForSeconds(2f);
@@ -132,8 +143,10 @@ public class SephirothBattleMovement : MonoBehaviour
     {
         animator.SetTrigger("Attack 2");
         sounds.Play(sounds.attacks);
+        sounds.Attack2();
         yield return new WaitForSeconds(0.916f);
         EnemyDamageTaken(true);
+        cloudDamage.PlayOneShot(aargh, 0.5f);
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
         yield return new WaitForSeconds(3.083f);
@@ -149,7 +162,9 @@ public class SephirothBattleMovement : MonoBehaviour
     {
         animator.SetTrigger("Attack 3");
         sounds.Play(sounds.attacks);
+        sounds.Attack3();
         EnemyDamageTaken(true);
+        cloudDamage.PlayOneShot(aargh, 0.5f);
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
         yield return new WaitForSeconds(3.25f);
@@ -164,9 +179,10 @@ public class SephirothBattleMovement : MonoBehaviour
     {
         animator.SetTrigger("Angel 1");
         sounds.Play(sounds.attacks);
-        
+        sounds.Angel1();
         yield return new WaitForSeconds(3.333f);
         EnemyDamageTaken(true);
+        cloudDamage.PlayOneShot(aargh, 0.5f);
         yield return new WaitForSeconds(3f);
         MoveBack();
     }
@@ -179,8 +195,10 @@ public class SephirothBattleMovement : MonoBehaviour
     {
         animator.SetTrigger("Angel 2");
         sounds.Play(sounds.attacks);
+        sounds.Angel2();
         yield return new WaitForSeconds(4.875f);
         EnemyDamageTaken(true);
+        cloudDamage.PlayOneShot(aargh, 0.5f);
         yield return new WaitForSeconds(3f);
         MoveBack();
     }
@@ -193,8 +211,10 @@ public class SephirothBattleMovement : MonoBehaviour
     {
         animator.SetTrigger("Angel 3");
         sounds.Play(sounds.attacks);
+        sounds.Angel3();
         yield return new WaitForSeconds(3.875f);
         EnemyDamageTaken(true);
+        cloudDamage.PlayOneShot(aargh, 0.5f);
         yield return new WaitForSeconds(4.5f);
         MoveBack();
     }
@@ -255,8 +275,26 @@ public class SephirothBattleMovement : MonoBehaviour
             Destroy(spawned, 5f);
         }
     }
+    public void Aura()
+    {
+        // Check for Cloud instead of the Buster Sword
+        if (aura != null)
+        {
+            // Instantiate and immediately parent it to Cloud
+            GameObject spawned = Instantiate(aura, fakeSephi);
+
+            // Apply position offset (e.g., Y = 0 for feet, Y = 1 for chest)
+            spawned.transform.position = fakeSephi.position + vfxPositionOffset;
+
+            // Apply rotation, staying aligned with Cloud
+            spawned.transform.rotation = fakeSephi.rotation * Quaternion.Euler(vfxRotationOffset);
+
+            Destroy(spawned, 6f);
+        }
+    }
     void MoveBack()
     {
+        
         cm.cloudHP = cm.cloudHP - damage;
         cm.cloudDamageTaken = cm.cloudDamageTaken + damage;
         sephi.localPosition = Vector3.zero;
@@ -267,7 +305,7 @@ public class SephirothBattleMovement : MonoBehaviour
         }
         else
         {
-            cloudDamage.PlayOneShot(aargh);
+            
             StartCoroutine(Turn());
         }  
     }

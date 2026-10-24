@@ -213,7 +213,7 @@ public class CombatManager : MonoBehaviour
     {
         sephiAnimator.SetBool("Dead", true);
         sounds.PlayOneShot(end);
-        sounds.PlayOneShot(metalPipe, 0.5f);
+        sounds.PlayOneShot(metalPipe, 0.2f);
         Invoke("Win", 3.5f);
     }
 
