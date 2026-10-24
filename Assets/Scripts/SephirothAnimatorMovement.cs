@@ -56,4 +56,11 @@ public class SephirothAnimatorMovement : MonoBehaviour
             parent.Aura();
         }
     }
+    public void LimitAura()
+    {
+        if (parent != null)
+        {
+            parent.LimitAura();
+        }
+    }
 }

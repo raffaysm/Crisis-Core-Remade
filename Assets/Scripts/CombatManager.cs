@@ -18,6 +18,8 @@ public class CombatManager : MonoBehaviour
     public AudioClip metalPipe;
     public AudioClip wellx3;
     public AudioClip sephiWin;
+    public AudioClip limitFill;
+    public bool limitFillPlayed = false;
     public GameObject mainCamera;
     public GameObject zackWinCamera;
     public GameObject sephiWinCamera;
@@ -134,13 +136,19 @@ public class CombatManager : MonoBehaviour
         //No Limit Overcapping
         cloudLimit = (int)(((float)cloudDamageTaken / limitRequirement) * 100);
 
-        if (cloudLimit <= 100)
+        if (cloudLimit < 100)
         {
             Limit.text = cloudLimit.ToString() + "%";
+            limitFillPlayed = false;
         }
         else
         {
             Limit.text = "100%";
+            if(limitFillPlayed == false)
+            {
+                sounds.PlayOneShot(limitFill, 0.5f);
+                limitFillPlayed = true;
+            }
         }
     }
 

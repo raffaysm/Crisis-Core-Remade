@@ -7,6 +7,7 @@ public class SephirothBattleMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     Rigidbody rb;
     Animator animator;
+    GameObject limitSpawned = null;
     CombatManager cm;
     public AudioSource cloudDamage;
     public AudioClip aargh;
@@ -26,6 +27,7 @@ public class SephirothBattleMovement : MonoBehaviour
     public GameObject magicVfx;
     public GameObject magicHitVfx;
     public GameObject explosion;
+    public GameObject limitAura;
     public GameObject aura;
     public Vector3 magicVfxPositionOffset;
     public Vector3 magicVfxRotationOffset;
@@ -34,6 +36,9 @@ public class SephirothBattleMovement : MonoBehaviour
     public Transform fakeCloud;
     public Transform fakeCloud2;
     public Transform fakeSephi;
+    public Transform fakeSephi3;
+    public bool limit = false;
+    public bool hasUsedLimit = false;
 
     void Start()
     {
@@ -59,48 +64,97 @@ public class SephirothBattleMovement : MonoBehaviour
 
     public void SephiAttack()
     {
-            if (phase1 && cm.sephiHP <= cm.sephiMaxHP / 2)
+        // 1. HIGHEST PRIORITY: If charging, he MUST finish the Limit strike.
+        if (phase1 && limit == true)
+        {
+            Limit2();
+            return; // Stop reading so he doesn't phase change this turn
+        }
+
+        // 2. THE 60% TRIGGER: If HP reaches 60% or lower, and he hasn't used Limit yet.
+        if (phase1 && cm.sephiHP <= cm.sephiMaxHP * 0.6f && hasUsedLimit == false)
+        {
+            hasUsedLimit = true; // Lock it so he doesn't loop this forever
+            Limit1();
+            return; // Stop reading so he doesn't phase change this turn
+        }
+
+        // 3. PHASE CHANGE: If he isn't charging, Limit is done, and HP is 50% or lower.
+        if (phase1 && hasUsedLimit == true && cm.sephiHP <= cm.sephiMaxHP / 2f)
+        {
+            StartCoroutine(PhaseChange());
+            return;
+        }
+
+        // 4. NORMAL PHASE 1 LOGIC: Standard attacks above 60% HP
+        if (phase1)
+        {
+            int randomAction = Random.Range(1, 4);
+
+            if (randomAction == 1)
             {
-                StartCoroutine(PhaseChange());
-                return;
+                SephiAttack1();
             }
-
-            if (phase1)
+            else if (randomAction == 2)
             {
-                int randomAction = Random.Range(1, 4);
-
-                if (randomAction == 1)
-                {
-                    SephiAttack1();
-                }
-                if (randomAction == 2)
-                {
-                    SephiAttack2();
-                }
-                if (randomAction == 3)
-                {
-                    SephiAttack3();
-                }
-
+                SephiAttack2();
             }
-
-            if (phase2)
+            else if (randomAction == 3)
             {
+                SephiAttack3();
+            }
+        }
+
+        // 5. PHASE 2 LOGIC
+        if (phase2)
+        {
             int randomAction = Random.Range(1, 4);
 
             if (randomAction == 1)
             {
                 AngelAttack1();
             }
-            if (randomAction == 2)
+            else if (randomAction == 2)
             {
                 AngelAttack2();
             }
-            if (randomAction == 3)
+            else if (randomAction == 3)
             {
                 AngelAttack3();
             }
         }
+    }
+
+    public void Limit1()
+    {
+        animator.SetTrigger("Limit");
+        limit = true;
+        StartCoroutine(Turn());
+    }
+    public void Limit2()
+    {
+        StartCoroutine(LimitHit());
+    }
+    IEnumerator LimitHit()
+    {
+        
+        animator.SetTrigger("LimitHit");
+        sounds.Limit();
+        yield return new WaitForSeconds(1.5f);
+
+        // NOW safely destroy the aura exactly when the hit connects
+        if (limitSpawned != null)
+        {
+            Destroy(limitSpawned);
+            limitSpawned = null;
+        }
+        EnemyDamageTaken(true);
+        cloudDamage.PlayOneShot(aargh, 0.5f);
+        Vector3 direction = (enemy.position - sephi.position).normalized;
+        sephi.position = enemy.position - direction * distance;
+        yield return new WaitForSeconds(5f);
+        limit = false;
+        MoveBack(350);
     }
 
     IEnumerator PhaseChange()
@@ -131,8 +185,8 @@ public class SephirothBattleMovement : MonoBehaviour
         cloudDamage.PlayOneShot(aargh, 0.5f);
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
-        yield return new WaitForSeconds(2f);
-        MoveBack();
+        yield return new WaitForSeconds(3f);
+        MoveBack(150);
     }
 
     public void SephiAttack2()
@@ -151,7 +205,7 @@ public class SephirothBattleMovement : MonoBehaviour
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
         yield return new WaitForSeconds(3.083f);
-        MoveBack();
+        MoveBack(150);
     }
 
     public void SephiAttack3()
@@ -169,7 +223,7 @@ public class SephirothBattleMovement : MonoBehaviour
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
         yield return new WaitForSeconds(3.25f);
-        MoveBack();
+        MoveBack(150);
     }
     public void AngelAttack1()
     {
@@ -185,7 +239,7 @@ public class SephirothBattleMovement : MonoBehaviour
         EnemyDamageTaken(true);
         cloudDamage.PlayOneShot(aargh, 0.5f);
         yield return new WaitForSeconds(3f);
-        MoveBack();
+        MoveBack(150);
     }
     public void AngelAttack2()
     {
@@ -201,7 +255,7 @@ public class SephirothBattleMovement : MonoBehaviour
         EnemyDamageTaken(true);
         cloudDamage.PlayOneShot(aargh, 0.5f);
         yield return new WaitForSeconds(3f);
-        MoveBack();
+        MoveBack(150);
     }
     public void AngelAttack3()
     {
@@ -217,7 +271,7 @@ public class SephirothBattleMovement : MonoBehaviour
         EnemyDamageTaken(true);
         cloudDamage.PlayOneShot(aargh, 0.5f);
         yield return new WaitForSeconds(4.5f);
-        MoveBack();
+        MoveBack(150);
     }
     public void PlayAttackVFX()
     {
@@ -293,11 +347,20 @@ public class SephirothBattleMovement : MonoBehaviour
             Destroy(spawned, 6f);
         }
     }
-    void MoveBack()
+    public void LimitAura()
+    {
+        if (limitAura != null && limitSpawned == null)
+        {
+            limitSpawned = Instantiate(limitAura, fakeSephi3);
+            limitSpawned.transform.position = fakeSephi3.position + vfxPositionOffset;
+            limitSpawned.transform.rotation = fakeSephi3.rotation * Quaternion.Euler(vfxRotationOffset);
+        }
+    }
+    void MoveBack(int damageDealt)
     {
         
-        cm.cloudHP = cm.cloudHP - damage;
-        cm.cloudDamageTaken = cm.cloudDamageTaken + damage;
+        cm.cloudHP = cm.cloudHP - damageDealt;
+        cm.cloudDamageTaken = cm.cloudDamageTaken + damageDealt;
         sephi.localPosition = Vector3.zero;
         EnemyDamageTaken(false);
         if (cm.cloudHP <= 0)

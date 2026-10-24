@@ -29,7 +29,7 @@ public class CloudBattleMovement : MonoBehaviour
     public float distance = 2f;
     private int damage = 100;
     private int heal = 300;
-    private int limitDamage = 500;
+    private int limitDamage = 250;
     private int mpCost = 10;
     void Start()
     {
@@ -171,6 +171,7 @@ public class CloudBattleMovement : MonoBehaviour
         cloud.position = enemy.position - direction * distance;
         cm.sephiHP = cm.sephiHP - limitDamage;
         yield return new WaitForSeconds(3.833f);
+        cm.cloudDamageTaken = 0;
         MoveBack();
     }
     void MoveBack()

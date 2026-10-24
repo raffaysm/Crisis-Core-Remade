@@ -46,13 +46,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37fb1d6c9b6483745bbb9a0a144fe19a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  scene: Title CC
   sounds: {fileID: 3368773545481609210}
   start: {fileID: 8300000, guid: 309cf6321e3d9c2489d3d2363a0bd6e7, type: 3}
-  pauseMenu: {fileID: 0}
+  end: {fileID: 8300000, guid: 813b58c26e1bbd7408817c3687d664fb, type: 3}
+  dead: {fileID: 8300000, guid: f6fad43da67e8db4e8cb56f2ae192db4, type: 3}
+  gongaga: {fileID: 8300000, guid: d243a4df95b7b534b994d3e0b7065ff0, type: 3}
+  metalPipe: {fileID: 8300000, guid: a7c0f8b61e1eb3d42b86e69111ac48e0, type: 3}
+  wellx3: {fileID: 8300000, guid: 53561aab33dcf5d4b944c34f0f70a3ca, type: 3}
+  sephiWin: {fileID: 8300000, guid: c5f500b51b1588c48802606523a30377, type: 3}
+  mainCamera: {fileID: 0}
+  zackWinCamera: {fileID: 0}
+  sephiWinCamera: {fileID: 0}
+  battleMenu: {fileID: 0}
   gameOverMenu: {fileID: 0}
   attackMenu: {fileID: 0}
   magicMenu: {fileID: 0}
   limitMenu: {fileID: 0}
+  attackButtonArrow: {fileID: 0}
+  magicButtonArrow: {fileID: 0}
+  limitButtonArrow: {fileID: 0}
+  exit: {fileID: 0}
+  win: {fileID: 0}
+  gameOverImage: {fileID: 0}
+  winImage: {fileID: 0}
   attackButton: {fileID: 0}
   magicButton: {fileID: 0}
   limitButton: {fileID: 0}
@@ -61,12 +78,12 @@ MonoBehaviour:
   Limit: {fileID: 0}
   cloudBattle: {fileID: 0}
   sephiBattle: {fileID: 0}
-  cloud: 1
-  sephi: 0
+  cloudAnimator: {fileID: 0}
+  sephiAnimator: {fileID: 0}
   cloudHP: 777
   cloudMP: 77
   limitRequirement: 1000
-  cloudLimit: 0
+  cloudLimit: 1000
   cloudDamageTaken: 0
   sephiHP: 1000
   sephiMaxHP: 1000
@@ -82,7 +99,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 09b1abb53dbac484d98e89210b1c45c7, type: 3}
+  m_Resource: {fileID: 8300000, guid: ee7db86c94f10fd4d8ad8ae7758028d8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.15
   m_Pitch: 1
@@ -181,7 +198,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

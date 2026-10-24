@@ -11,6 +11,7 @@ public class SephirothAudio : MonoBehaviour
     public AudioClip angel1;
     public AudioClip angel2;
     public AudioClip angel3;    
+    public AudioClip limit;    
     public void Play(AudioClip[] clips)
     {
         if (clips.Length == 0) return;
@@ -27,6 +28,10 @@ public class SephirothAudio : MonoBehaviour
     public void Attack3()
     {
         audioSource.PlayOneShot(attack3);
+    }
+    public void Limit()
+    {
+        audioSource.PlayOneShot(limit);
     }
     public void Phase2()
     {
