@@ -108,6 +108,7 @@ public class SephirothBattleMovement : MonoBehaviour
         rb.useGravity = false;
         rb.isKinematic = true;
         animator.SetTrigger("Phase");
+        sounds.Phase2();
         yield return new WaitForSeconds(5.833f);
         Vector3 endPosition = sephi.position;
         phase1 = false;

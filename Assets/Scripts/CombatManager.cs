@@ -3,10 +3,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CombatManager : MonoBehaviour
 {
     public static CombatManager cm;
+    public string scene;
     public AudioSource sounds;
     public AudioClip start;
     public AudioClip end;
@@ -14,6 +17,7 @@ public class CombatManager : MonoBehaviour
     public AudioClip gongaga;
     public AudioClip metalPipe;
     public AudioClip wellx3;
+    public AudioClip sephiWin;
     public GameObject mainCamera;
     public GameObject zackWinCamera;
     public GameObject sephiWinCamera;
@@ -22,6 +26,13 @@ public class CombatManager : MonoBehaviour
     public GameObject attackMenu;
     public GameObject magicMenu;
     public GameObject limitMenu;
+    public GameObject attackButtonArrow;
+    public GameObject magicButtonArrow;
+    public GameObject limitButtonArrow;
+    public GameObject exit;
+    public GameObject win;
+    public Image gameOverImage;
+    public Image winImage;
     public Button attackButton;
     public Button magicButton;
     public Button limitButton;
@@ -69,6 +80,11 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    public void Exit()
+    {
+        SceneManager.LoadScene(scene);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -77,12 +93,16 @@ public class CombatManager : MonoBehaviour
             attackMenu.SetActive(false);
             magicMenu.SetActive(false);
             limitMenu.SetActive(false);
+            attackButtonArrow.SetActive(false);
+            magicButtonArrow.SetActive(false);
+            limitButtonArrow.SetActive(false);
             attackButton.GetComponent<EventTrigger>().enabled = true;
             magicButton.GetComponent<EventTrigger>().enabled = true;
             limitButton.GetComponent<EventTrigger>().enabled = true;
             attackButton.interactable = true;
             magicButton.interactable = true;
             limitButton.interactable = true;
+            
         }
 
         // minimum HP to 0
@@ -211,6 +231,7 @@ public class CombatManager : MonoBehaviour
 
     public void CloudWins()
     {
+
         sephiAnimator.SetBool("Dead", true);
         sounds.PlayOneShot(end);
         sounds.PlayOneShot(metalPipe, 0.2f);
@@ -226,6 +247,7 @@ public class CombatManager : MonoBehaviour
         sounds.PlayOneShot(gongaga, 2f);
 
         battleMenu.SetActive(false);
+        StartCoroutine(WinImage());
     }
 
     public void SephirothWins()
@@ -242,8 +264,41 @@ public class CombatManager : MonoBehaviour
 
         sephiAnimator.SetBool("Win", true);
         sounds.PlayOneShot(wellx3, 2f);
+        sounds.PlayOneShot(sephiWin, 2f);
 
         battleMenu.SetActive(false);
         gameOverMenu.SetActive(true);
+
+        StartCoroutine(GameOverImage());
+    }
+    IEnumerator GameOverImage()
+    {
+        // 1. Wait 3 seconds for Sephiroth's animation to finish
+        yield return new WaitForSeconds(3f);
+
+        // 2. Slowly increase the image alpha (transparency) from 0 to 1
+        float alpha = 0f;
+        while (alpha < 1f)
+        {
+            alpha += Time.deltaTime * 0.5f; // Change 0.5f to make it fade faster or slower
+            gameOverImage.color = new Color(1f, 1f, 1f, alpha);
+            yield return null;
+        }
+        exit.SetActive(true);
+    }
+    IEnumerator WinImage()
+    {
+        // 1. Wait 3 seconds for Sephiroth's animation to finish
+        yield return new WaitForSeconds(3f);
+
+        // 2. Slowly increase the image alpha (transparency) from 0 to 1
+        float alpha = 0f;
+        while (alpha < 1f)
+        {
+            alpha += Time.deltaTime * 0.5f; // Change 0.5f to make it fade faster or slower
+            winImage.color = new Color(1f, 1f, 1f, alpha);
+            yield return null;
+        }
+        win.SetActive(true);
     }
 }

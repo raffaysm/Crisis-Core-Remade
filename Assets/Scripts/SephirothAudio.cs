@@ -7,9 +7,10 @@ public class SephirothAudio : MonoBehaviour
     public AudioClip attack1;
     public AudioClip attack2;
     public AudioClip attack3;
+    public AudioClip phase2;
     public AudioClip angel1;
     public AudioClip angel2;
-    public AudioClip angel3;
+    public AudioClip angel3;    
     public void Play(AudioClip[] clips)
     {
         if (clips.Length == 0) return;
@@ -26,6 +27,10 @@ public class SephirothAudio : MonoBehaviour
     public void Attack3()
     {
         audioSource.PlayOneShot(attack3);
+    }
+    public void Phase2()
+    {
+        audioSource.PlayOneShot(phase2, 2f);
     }
     public void Angel1()
     {
