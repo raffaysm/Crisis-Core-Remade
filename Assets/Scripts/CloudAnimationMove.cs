@@ -37,4 +37,11 @@ public class CloudAnimationMove : MonoBehaviour
             parent.PlayCureVFX();
         }
     }
+    public void TriggerLimitVFX()
+    {
+        if (parent != null)
+        {
+            parent.PlayLimitVFX();
+        }
+    }
 }

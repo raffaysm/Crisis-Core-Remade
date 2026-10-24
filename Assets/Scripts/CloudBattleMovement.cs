@@ -12,6 +12,7 @@ public class CloudBattleMovement : MonoBehaviour
     public CloudAnimationMove anim;
     public GameObject vfx;
     public GameObject cureVfx;
+    public GameObject limitVfx;
     public Transform fakeCloud;
     public Vector3 vfxPositionOffset;
     public Vector3 vfxRotationOffset;    public Transform busterSword;
@@ -218,6 +219,24 @@ public class CloudBattleMovement : MonoBehaviour
         {
             // Instantiate and immediately parent it to Cloud
             GameObject spawned = Instantiate(cureVfx, fakeCloud);
+
+            // Apply position offset (e.g., Y = 0 for feet, Y = 1 for chest)
+            spawned.transform.position = fakeCloud.position + vfxPositionOffset;
+
+            // Apply rotation, staying aligned with Cloud
+            spawned.transform.rotation = fakeCloud.rotation * Quaternion.Euler(vfxRotationOffset);
+
+            Destroy(spawned, 2f);
+        }
+    }
+    public void PlayLimitVFX()
+    {
+
+        // Check for Cloud instead of the Buster Sword
+        if (limitVfx != null && cloud != null)
+        {
+            // Instantiate and immediately parent it to Cloud
+            GameObject spawned = Instantiate(limitVfx, fakeCloud);
 
             // Apply position offset (e.g., Y = 0 for feet, Y = 1 for chest)
             spawned.transform.position = fakeCloud.position + vfxPositionOffset;

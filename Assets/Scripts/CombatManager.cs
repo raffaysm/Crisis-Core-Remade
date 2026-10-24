@@ -12,6 +12,8 @@ public class CombatManager : MonoBehaviour
     public AudioClip end;
     public AudioClip dead;
     public AudioClip gongaga;
+    public AudioClip metalPipe;
+    public AudioClip wellx3;
     public GameObject mainCamera;
     public GameObject zackWinCamera;
     public GameObject sephiWinCamera;
@@ -63,7 +65,7 @@ public class CombatManager : MonoBehaviour
     {
         if(sounds != null)
         {
-            sounds.PlayOneShot(start);
+            sounds.PlayOneShot(start, 0.5f);
         }
     }
 
@@ -211,6 +213,7 @@ public class CombatManager : MonoBehaviour
     {
         sephiAnimator.SetBool("Dead", true);
         sounds.PlayOneShot(end);
+        sounds.PlayOneShot(metalPipe, 0.5f);
         Invoke("Win", 3.5f);
     }
 
@@ -238,6 +241,7 @@ public class CombatManager : MonoBehaviour
         sephiWinCamera.SetActive(true);
 
         sephiAnimator.SetBool("Win", true);
+        sounds.PlayOneShot(wellx3, 2f);
 
         battleMenu.SetActive(false);
         gameOverMenu.SetActive(true);

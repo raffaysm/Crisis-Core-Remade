@@ -5,7 +5,6 @@ public class SephirothAnimatorMovement : MonoBehaviour
     Animator animator;
     Rigidbody rb;
     public SephirothBattleMovement parent;
-    public string attack;
     GameObject vfx;
 
     void Start()
@@ -26,14 +25,28 @@ public class SephirothAnimatorMovement : MonoBehaviour
     {
         if (parent != null)
         {
-            parent.PlayAttackVFX(attack);
+            parent.PlayAttackVFX();
         }
     }
-    public void TriggerCureVFX()
+    public void TriggerMagicVFX()
     {
         if (parent != null)
         {
-            //parent.PlayCureVFX();
+            parent.PlayMagicVFX();
+        }
+    }
+    public void TriggerMagicVFX2()
+    {
+        if (parent != null)
+        {
+            parent.PlayMagicVFX2();
+        }
+    }
+    public void Explosion()
+    {
+        if (parent != null)
+        {
+            parent.Explosion();
         }
     }
 }
