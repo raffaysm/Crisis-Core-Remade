@@ -54,6 +54,7 @@ public class CombatManager : MonoBehaviour
     public int sephiHP = 1000;
     public int sephiMaxHP = 1000;
     public int sephiMP = 100;
+    public bool isCloudTurn = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -90,7 +91,7 @@ public class CombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1) && isCloudTurn == true)
         {
             attackMenu.SetActive(false);
             magicMenu.SetActive(false);
@@ -218,16 +219,18 @@ public class CombatManager : MonoBehaviour
     {
         if (cloud)
         {
-                attackButton.interactable = true;
-                magicButton.interactable = true;
-                limitButton.interactable = true;
-                attackButton.GetComponent<EventTrigger>().enabled = true;
-                magicButton.GetComponent<EventTrigger>().enabled = true;
-                limitButton.GetComponent<EventTrigger>().enabled = true;
+            isCloudTurn = true;
+            attackButton.interactable = true;
+            magicButton.interactable = true;
+            limitButton.interactable = true;
+            attackButton.GetComponent<EventTrigger>().enabled = true;
+            magicButton.GetComponent<EventTrigger>().enabled = true;
+            limitButton.GetComponent<EventTrigger>().enabled = true;
         }
 
         if (sephi)
         {
+            isCloudTurn = false;
             attackButton.interactable = false;
             magicButton.interactable = false;
             limitButton.interactable = false;
