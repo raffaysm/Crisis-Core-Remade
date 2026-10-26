@@ -5,6 +5,7 @@ public class SephirothAnimatorMovement : MonoBehaviour
     Animator animator;
     Rigidbody rb;
     public SephirothBattleMovement parent;
+    public SephirothAudio parentAudio;
     GameObject vfx;
 
     void Start()
@@ -12,6 +13,7 @@ public class SephirothAnimatorMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponentInParent<Rigidbody>();
         parent = GetComponentInParent<SephirothBattleMovement>();
+        parentAudio = GetComponentInParent<SephirothAudio>();
     }
 
     void OnAnimatorMove()
@@ -61,6 +63,13 @@ public class SephirothAnimatorMovement : MonoBehaviour
         if (parent != null)
         {
             parent.LimitAura();
+        }
+    }
+    public void ShatterSFX()
+    {
+        if (parentAudio != null)
+        {
+            parentAudio.ShatterSFX();
         }
     }
 }

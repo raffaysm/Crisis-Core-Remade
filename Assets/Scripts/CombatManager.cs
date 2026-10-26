@@ -11,6 +11,8 @@ public class CombatManager : MonoBehaviour
     public static CombatManager cm;
     public string scene;
     public AudioSource sounds;
+    public AudioSource bgmSource;
+    public AudioClip bgm;
     public AudioClip start;
     public AudioClip end;
     public AudioClip dead;
@@ -19,6 +21,9 @@ public class CombatManager : MonoBehaviour
     public AudioClip wellx3;
     public AudioClip sephiWin;
     public AudioClip limitFill;
+    public AudioClip limitFill2;
+    public AudioClip victory;
+    public AudioClip youLose;
     public bool limitFillPlayed = false;
     public GameObject mainCamera;
     public GameObject zackWinCamera;
@@ -60,6 +65,9 @@ public class CombatManager : MonoBehaviour
     void Awake()
     {
         cm = this;
+        bgmSource.clip = bgm;
+        bgmSource.loop = true;
+        bgmSource.Play();
         cm.mainCamera.SetActive(true);
         cm.zackWinCamera.SetActive(false);
         cm.sephiWinCamera.SetActive(false);
@@ -91,7 +99,7 @@ public class CombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1) && isCloudTurn == true)
+        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)) && isCloudTurn == true)
         {
             attackMenu.SetActive(false);
             magicMenu.SetActive(false);
@@ -148,6 +156,7 @@ public class CombatManager : MonoBehaviour
             if(limitFillPlayed == false)
             {
                 sounds.PlayOneShot(limitFill, 0.5f);
+                sounds.PlayOneShot(limitFill2, 1f);
                 limitFillPlayed = true;
             }
         }
@@ -242,7 +251,8 @@ public class CombatManager : MonoBehaviour
 
     public void CloudWins()
     {
-
+        sounds.Stop();
+        sounds.loop = false;
         sephiAnimator.SetBool("Dead", true);
         sounds.PlayOneShot(end);
         sounds.PlayOneShot(metalPipe, 0.2f);
@@ -251,6 +261,7 @@ public class CombatManager : MonoBehaviour
 
     void Win()
     {
+        sounds.PlayOneShot(victory);
         mainCamera.SetActive(false);
         zackWinCamera.SetActive(true);
 
@@ -263,6 +274,8 @@ public class CombatManager : MonoBehaviour
 
     public void SephirothWins()
     {
+        sounds.Stop();
+        sounds.loop = false;
         cloudAnimator.SetBool("Dead", true);
         sounds.PlayOneShot(dead);
         Invoke("GameOver", 3.5f);

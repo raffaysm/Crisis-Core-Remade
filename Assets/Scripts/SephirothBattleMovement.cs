@@ -137,7 +137,6 @@ public class SephirothBattleMovement : MonoBehaviour
     }
     IEnumerator LimitHit()
     {
-        
         animator.SetTrigger("LimitHit");
         sounds.Limit();
         yield return new WaitForSeconds(1.5f);
@@ -186,7 +185,7 @@ public class SephirothBattleMovement : MonoBehaviour
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
         yield return new WaitForSeconds(3f);
-        MoveBack(150);
+        MoveBack(damage);
     }
 
     public void SephiAttack2()
@@ -205,7 +204,7 @@ public class SephirothBattleMovement : MonoBehaviour
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
         yield return new WaitForSeconds(3.083f);
-        MoveBack(150);
+        MoveBack(damage);
     }
 
     public void SephiAttack3()
@@ -223,7 +222,7 @@ public class SephirothBattleMovement : MonoBehaviour
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
         yield return new WaitForSeconds(3.25f);
-        MoveBack(150);
+        MoveBack(damage);
     }
     public void AngelAttack1()
     {
@@ -239,7 +238,7 @@ public class SephirothBattleMovement : MonoBehaviour
         EnemyDamageTaken(true);
         cloudDamage.PlayOneShot(aargh, 0.5f);
         yield return new WaitForSeconds(3f);
-        MoveBack(150);
+        MoveBack(damage);
     }
     public void AngelAttack2()
     {
@@ -255,7 +254,7 @@ public class SephirothBattleMovement : MonoBehaviour
         EnemyDamageTaken(true);
         cloudDamage.PlayOneShot(aargh, 0.5f);
         yield return new WaitForSeconds(3f);
-        MoveBack(150);
+        MoveBack(damage);
     }
     public void AngelAttack3()
     {
@@ -271,7 +270,7 @@ public class SephirothBattleMovement : MonoBehaviour
         EnemyDamageTaken(true);
         cloudDamage.PlayOneShot(aargh, 0.5f);
         yield return new WaitForSeconds(4.5f);
-        MoveBack(150);
+        MoveBack(damage);
     }
     public void PlayAttackVFX()
     {

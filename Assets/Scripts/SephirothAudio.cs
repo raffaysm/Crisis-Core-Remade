@@ -8,10 +8,13 @@ public class SephirothAudio : MonoBehaviour
     public AudioClip attack2;
     public AudioClip attack3;
     public AudioClip phase2;
+    public AudioClip phase22;
     public AudioClip angel1;
     public AudioClip angel2;
     public AudioClip angel3;    
     public AudioClip limit;    
+    public AudioClip limitMonologue;    
+    public AudioClip shatter;    
     public void Play(AudioClip[] clips)
     {
         if (clips.Length == 0) return;
@@ -31,11 +34,17 @@ public class SephirothAudio : MonoBehaviour
     }
     public void Limit()
     {
+        audioSource.PlayOneShot(limitMonologue);
         audioSource.PlayOneShot(limit);
+    }
+    public void ShatterSFX()
+    {
+        audioSource.PlayOneShot(shatter);
     }
     public void Phase2()
     {
         audioSource.PlayOneShot(phase2, 2f);
+        audioSource.PlayOneShot(phase22, 1f);
     }
     public void Angel1()
     {
