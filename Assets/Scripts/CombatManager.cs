@@ -82,6 +82,7 @@ public class CombatManager : MonoBehaviour
     void BattleMenu()
     {
         battleMenu.SetActive(true);
+        Combat(true, false);
     }
     void ActivatingCombatMode()
     {
@@ -251,8 +252,6 @@ public class CombatManager : MonoBehaviour
 
     public void CloudWins()
     {
-        sounds.Stop();
-        sounds.loop = false;
         sephiAnimator.SetBool("Dead", true);
         sounds.PlayOneShot(end);
         sounds.PlayOneShot(metalPipe, 0.2f);
@@ -261,7 +260,9 @@ public class CombatManager : MonoBehaviour
 
     void Win()
     {
-        sounds.PlayOneShot(victory);
+        bgmSource.Stop();
+        bgmSource.loop = false;
+        bgmSource.PlayOneShot(victory);
         mainCamera.SetActive(false);
         zackWinCamera.SetActive(true);
 
@@ -274,8 +275,6 @@ public class CombatManager : MonoBehaviour
 
     public void SephirothWins()
     {
-        sounds.Stop();
-        sounds.loop = false;
         cloudAnimator.SetBool("Dead", true);
         sounds.PlayOneShot(dead);
         Invoke("GameOver", 3.5f);
@@ -283,6 +282,9 @@ public class CombatManager : MonoBehaviour
 
     void GameOver()
     {
+        bgmSource.Stop();
+        bgmSource.loop = false;
+        bgmSource.PlayOneShot(youLose);
         mainCamera.SetActive(false);
         sephiWinCamera.SetActive(true);
 
