@@ -6,7 +6,7 @@ A fan made turn-based version of the Zack vs Sephiroth fight in Crisis Core.
 
 
 
-<img width="2559" height="1439" alt="gameplay" src="https://github.com/user-attachments/assets/fef370e9-d5e5-4c97-b981-f44b6ae69f54" />
+<img width="2559" height="1439" alt="gameplay" src="https://github.com/user-attachments/assets/09611d45-6b05-486d-8205-49bce4b36b69" />
 
 
 
