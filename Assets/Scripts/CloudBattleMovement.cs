@@ -138,10 +138,6 @@ public class CloudBattleMovement : MonoBehaviour
             cm.Combat(false, true);
             cm.magicMenu.SetActive(false);
             cm.magicButton.interactable = false;
-            cloudAnimator.SetTrigger("Cure");
-            sounds.Cure();
-            cm.cloudHP = cm.cloudHP + heal;
-            cm.cloudMP = cm.cloudMP - mpCost;
             StartCoroutine(CureHit());
         }
     }
