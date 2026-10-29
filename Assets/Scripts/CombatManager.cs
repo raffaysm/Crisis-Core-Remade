@@ -52,6 +52,7 @@ public class CombatManager : MonoBehaviour
     public Animator sephiAnimator;
     private int maxCloudHP = 777;
     public int cloudHP = 777;
+    public int maxCloudMP = 77;
     public int cloudMP = 77;
     public int limitRequirement = 1000;
     public int cloudLimit = 0;
@@ -60,6 +61,9 @@ public class CombatManager : MonoBehaviour
     public int sephiMaxHP = 1000;
     public int sephiMP = 100;
     public bool isCloudTurn = false;
+    public Image cloudHealthBar;
+    public Image cloudManaBar;
+    public Image cloudLimitBar;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -121,10 +125,20 @@ public class CombatManager : MonoBehaviour
         if (cloudHP >= 0)
         {
             HP.text = cloudHP.ToString();
+
+            // fillAmount uses a 0 to 1 scale, so divide current HP by max HP
+            if (cloudHealthBar != null)
+            {
+                cloudHealthBar.fillAmount = (float)cloudHP / maxCloudHP;
+            }
         }
         else
         {
             HP.text = "0";
+            if (cloudHealthBar != null)
+            {
+                cloudHealthBar.fillAmount = 0f;
+            }
         }
 
         // No HP overcapping
@@ -137,10 +151,18 @@ public class CombatManager : MonoBehaviour
         if (cloudMP >= 0)
         {
             MP.text = cloudMP.ToString();
+            if (cloudManaBar != null)
+            {
+                cloudManaBar.fillAmount = (float)cloudMP / maxCloudMP;
+            }
         }
         else
         {
             MP.text = "0";
+            if (cloudManaBar != null)
+            {
+                cloudManaBar.fillAmount = 0f;
+            }
         }
 
         //No Limit Overcapping
@@ -149,6 +171,10 @@ public class CombatManager : MonoBehaviour
         if (cloudLimit < 100)
         {
             Limit.text = cloudLimit.ToString() + "%";
+            if (cloudLimitBar != null)
+            {
+                cloudLimitBar.fillAmount = (float)cloudLimit / 100f;
+            }
             limitFillPlayed = false;
         }
         else
@@ -156,6 +182,10 @@ public class CombatManager : MonoBehaviour
             Limit.text = "100%";
             if(limitFillPlayed == false)
             {
+                if (cloudLimitBar != null)
+                {
+                    cloudLimitBar.fillAmount = 100f;
+                }
                 sounds.PlayOneShot(limitFill, 0.5f);
                 sounds.PlayOneShot(limitFill2, 1f);
                 limitFillPlayed = true;
