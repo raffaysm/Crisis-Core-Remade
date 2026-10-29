@@ -68,7 +68,7 @@ public class CloudBattleMovement : MonoBehaviour
         cloudAnimator.SetTrigger("Braver");
         sounds.Play(sounds.braver);
         sounds.Braver();
-
+        
         yield return new WaitForSeconds(0.9f);
         
         Vector3 direction = (enemy.position - cloud.position).normalized;
@@ -77,6 +77,7 @@ public class CloudBattleMovement : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         EnemyDamageTaken(true);
         yield return new WaitForSeconds(1.3f);
+        CombatManager.cm.SpawnZackDamageText(damage);
         MoveBack();
     }
 
@@ -102,6 +103,7 @@ public class CloudBattleMovement : MonoBehaviour
         cloud.position = enemy.position - direction * distance;
         cm.sephiHP = cm.sephiHP - damage;
         yield return new WaitForSeconds(1.3f);
+        CombatManager.cm.SpawnZackDamageText(damage);
         MoveBack();
     }
     public void Punisher()
@@ -125,7 +127,7 @@ public class CloudBattleMovement : MonoBehaviour
         cloud.position = enemy.position - direction * distance;
         cm.sephiHP = cm.sephiHP - damage;
         yield return new WaitForSeconds(1.7f);
-        
+        CombatManager.cm.SpawnZackDamageText(damage);
         MoveBack();
     }
     public void Cure()
@@ -140,8 +142,19 @@ public class CloudBattleMovement : MonoBehaviour
             sounds.Cure();
             cm.cloudHP = cm.cloudHP + heal;
             cm.cloudMP = cm.cloudMP - mpCost;
-            StartCoroutine(Turn());
+            StartCoroutine(CureHit());
         }
+    }
+    IEnumerator CureHit()
+    {
+        cloudAnimator.SetTrigger("Cure");
+        sounds.Cure();
+        cm.cloudHP = cm.cloudHP + heal;
+        cm.cloudMP = cm.cloudMP - mpCost;
+        
+        yield return new WaitForSeconds(2f);
+        CombatManager.cm.SpawnZackHealText(heal);
+        StartCoroutine(Turn());
     }
 
     public void Ascension()
@@ -172,6 +185,7 @@ public class CloudBattleMovement : MonoBehaviour
         cm.sephiHP = cm.sephiHP - limitDamage;
         yield return new WaitForSeconds(3.833f);
         cm.cloudDamageTaken = 0;
+        CombatManager.cm.SpawnZackDamageText(limitDamage);
         MoveBack();
     }
     void MoveBack()

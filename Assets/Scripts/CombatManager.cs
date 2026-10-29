@@ -64,6 +64,12 @@ public class CombatManager : MonoBehaviour
     public Image cloudHealthBar;
     public Image cloudManaBar;
     public Image cloudLimitBar;
+    public GameObject sephiDamageTextPrefab;
+    public GameObject zackDamageTextPrefab;
+    public GameObject cureTextPrefab;
+    public Transform sephiTextSpawn; // Where the text appears on Sephiroth
+    public Transform zackTextSpawn; // Where the text appears on Sephiroth
+    public Transform cureTextSpawn; // Where the text appears on Sephiroth
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -356,5 +362,29 @@ public class CombatManager : MonoBehaviour
             yield return null;
         }
         win.SetActive(true);
+    }
+    public void SpawnZackDamageText(int zackDamageAmount)
+    {
+        // Spawns the prefab directly inside your chosen Canvas point
+        GameObject zackText = Instantiate(sephiDamageTextPrefab, sephiTextSpawn);
+
+        // Changes the text to the damage number
+        zackText.GetComponent<TMP_Text>().text = zackDamageAmount.ToString();
+    }
+    public void SpawnSephiDamageText(int sephiDamageAmount)
+    {
+        // Spawns the prefab directly inside your chosen Canvas point
+        GameObject sephiText = Instantiate(zackDamageTextPrefab, zackTextSpawn);
+
+        // Changes the text to the damage number
+        sephiText.GetComponent<TMP_Text>().text = sephiDamageAmount.ToString();
+    }
+    public void SpawnZackHealText(int cureAmount)
+    {
+        // Spawns the prefab directly inside your chosen Canvas point
+        GameObject healText = Instantiate(cureTextPrefab, cureTextSpawn);
+
+        // Changes the text to the damage number
+        healText.GetComponent<TMP_Text>().text = cureAmount.ToString();
     }
 }

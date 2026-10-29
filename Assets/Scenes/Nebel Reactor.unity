@@ -871,6 +871,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &190964819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 190964820}
+  - component: {fileID: 190964822}
+  - component: {fileID: 190964821}
+  m_Layer: 5
+  m_Name: Sephiroth Flying Text Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &190964820
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190964819}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 670628961}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -188, y: 129}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &190964821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190964819}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &190964822
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190964819}
+  m_CullTransparentMesh: 1
 --- !u!1 &192498030
 GameObject:
   m_ObjectHideFlags: 0
@@ -3173,6 +3248,8 @@ RectTransform:
   - {fileID: 11337519}
   - {fileID: 1613383632}
   - {fileID: 388439715}
+  - {fileID: 190964820}
+  - {fileID: 1965884803}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6758,6 +6835,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 829395811}
     - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: textSpawn
+      value: 
+      objectReference: {fileID: 190964820}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
       propertyPath: attackMenu
       value: 
       objectReference: {fileID: 1313263597}
@@ -6810,6 +6891,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1108034842}
     - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: cureTextSpawn
+      value: 
+      objectReference: {fileID: 1965884803}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
       propertyPath: gameOverImage
       value: 
       objectReference: {fileID: 1660014619}
@@ -6817,6 +6902,10 @@ PrefabInstance:
       propertyPath: sephiAnimator
       value: 
       objectReference: {fileID: 2012023773}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: zackTextSpawn
+      value: 
+      objectReference: {fileID: 1965884803}
     - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
       propertyPath: zackWinCamera
       value: 
@@ -6826,9 +6915,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2068155816}
     - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: cureTextPrefab
+      value: 
+      objectReference: {fileID: 9049580861096298633, guid: fbf5d4073053c7342999dbcf80b17461, type: 3}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: sephiTextSpawn
+      value: 
+      objectReference: {fileID: 190964820}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
       propertyPath: sephiWinCamera
       value: 
       objectReference: {fileID: 1650053737}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: damageTextPrefab
+      value: 
+      objectReference: {fileID: 9049580861096298633, guid: d5a7b1971bc780645b22662ef6a5498b, type: 3}
     - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
       propertyPath: limitButtonArrow
       value: 
@@ -6841,6 +6942,18 @@ PrefabInstance:
       propertyPath: attackButtonArrow
       value: 
       objectReference: {fileID: 278233817}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: sephirothTextSpawn
+      value: 
+      objectReference: {fileID: 190964820}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: zackDamageTextPrefab
+      value: 
+      objectReference: {fileID: 9049580861096298633, guid: 97eec1f993a10304f95d06209e774b3d, type: 3}
+    - target: {fileID: 2015391277468321021, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
+      propertyPath: sephiDamageTextPrefab
+      value: 
+      objectReference: {fileID: 9049580861096298633, guid: d5a7b1971bc780645b22662ef6a5498b, type: 3}
     - target: {fileID: 2767673501726455542, guid: c1c1863d9df257e46b3f08b3377daa7e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1096.535
@@ -9544,6 +9657,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928050185}
+  m_CullTransparentMesh: 1
+--- !u!1 &1965884802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1965884803}
+  - component: {fileID: 1965884805}
+  - component: {fileID: 1965884804}
+  m_Layer: 5
+  m_Name: 'Zack Flying Text Spawn '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1965884803
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965884802}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 670628961}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 683, y: 357}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1965884804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965884802}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1965884805
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965884802}
   m_CullTransparentMesh: 1
 --- !u!1 &1975287171
 GameObject:

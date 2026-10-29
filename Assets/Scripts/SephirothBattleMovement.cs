@@ -19,6 +19,7 @@ public class SephirothBattleMovement : MonoBehaviour
     public float distance = 2f;
     public float tilt = 10f;
     private int damage = 150;
+    private int limitDamage = 350;
     public bool phase1 = true;
     public bool phase2 = false;
     public GameObject vfx;
@@ -39,6 +40,7 @@ public class SephirothBattleMovement : MonoBehaviour
     public Transform fakeSephi3;
     public bool limit = false;
     public bool hasUsedLimit = false;
+
 
     void Start()
     {
@@ -154,7 +156,8 @@ public class SephirothBattleMovement : MonoBehaviour
         sephi.position = enemy.position - direction * distance;
         yield return new WaitForSeconds(5f);
         limit = false;
-        MoveBack(350);
+        CombatManager.cm.SpawnSephiDamageText(limitDamage);
+        MoveBack(limitDamage);
     }
 
     IEnumerator PhaseChange()
@@ -185,7 +188,8 @@ public class SephirothBattleMovement : MonoBehaviour
         cloudDamage.PlayOneShot(aargh, 0.5f);
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+        CombatManager.cm.SpawnSephiDamageText(damage);
         MoveBack(damage);
     }
 
@@ -205,6 +209,7 @@ public class SephirothBattleMovement : MonoBehaviour
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
         yield return new WaitForSeconds(3.083f);
+        CombatManager.cm.SpawnSephiDamageText(damage);
         MoveBack(damage);
     }
 
@@ -223,6 +228,7 @@ public class SephirothBattleMovement : MonoBehaviour
         Vector3 direction = (enemy.position - sephi.position).normalized;
         sephi.position = enemy.position - direction * distance;
         yield return new WaitForSeconds(3.25f);
+        CombatManager.cm.SpawnSephiDamageText(damage);
         MoveBack(damage);
     }
     public void AngelAttack1()
@@ -239,6 +245,7 @@ public class SephirothBattleMovement : MonoBehaviour
         EnemyDamageTaken(true);
         cloudDamage.PlayOneShot(aargh, 0.5f);
         yield return new WaitForSeconds(3f);
+        CombatManager.cm.SpawnSephiDamageText(damage);
         MoveBack(damage);
     }
     public void AngelAttack2()
@@ -255,6 +262,7 @@ public class SephirothBattleMovement : MonoBehaviour
         EnemyDamageTaken(true);
         cloudDamage.PlayOneShot(aargh, 0.5f);
         yield return new WaitForSeconds(3f);
+        CombatManager.cm.SpawnSephiDamageText(damage);
         MoveBack(damage);
     }
     public void AngelAttack3()
@@ -271,6 +279,7 @@ public class SephirothBattleMovement : MonoBehaviour
         EnemyDamageTaken(true);
         cloudDamage.PlayOneShot(aargh, 0.5f);
         yield return new WaitForSeconds(4.5f);
+        CombatManager.cm.SpawnSephiDamageText(damage);
         MoveBack(damage);
     }
     public void PlayAttackVFX()
