@@ -129,7 +129,8 @@ public class SephirothBattleMovement : MonoBehaviour
     {
         animator.SetTrigger("Limit");
         limit = true;
-        StartCoroutine(Turn());
+        //StartCoroutine(Turn());
+        Turn();
     }
     public void Limit2()
     {
@@ -368,8 +369,9 @@ public class SephirothBattleMovement : MonoBehaviour
         }
         else
         {
-            
-            StartCoroutine(Turn());
+
+            //StartCoroutine(Turn());
+            Turn();
         }  
     }
     void EnemyDamageTaken(bool stagger)
@@ -377,9 +379,13 @@ public class SephirothBattleMovement : MonoBehaviour
         cloudAnimator.SetBool("Stagger", stagger);
     }
 
-    IEnumerator Turn()
+    /*IEnumerator Turn()
     {
         yield return new WaitForSeconds(3f);
+        cm.Combat(true, false);
+    }*/
+    void Turn()
+    {
         cm.Combat(true, false);
     }
 }
