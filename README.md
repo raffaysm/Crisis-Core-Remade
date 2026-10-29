@@ -1,4 +1,4 @@
-# \# Crisis Core Remade
+\# Crisis Core Remade
 
 
 
@@ -6,7 +6,8 @@ A fan made turn-based version of the Zack vs Sephiroth fight in Crisis Core.
 
 
 
-!\[Crisis Core Gameplay Screenshot](Screenshots/gameplay.png)
+<img width="2559" height="1439" alt="gameplay" src="https://github.com/user-attachments/assets/e5083799-e557-4323-bd4b-68244ac09f6a" />
+
 
 
 
